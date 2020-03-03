@@ -7,6 +7,7 @@ import {PrivateRoute} from '../utils/PrivateRoute';
 // Actions
 import {testing} from '../actions/actions';
 // Components
+import Landing from './Landing';
 
 const App = props => 
 {
@@ -21,6 +22,12 @@ const App = props =>
     <div className="App">
       <h1>Testing!</h1>
       <button onClick={ e => props.testing()}>Redux Testing</button>
+      <Route exact path="/">
+        <Landing login={true} />
+      </Route>
+      <Route path="/signup">
+        <Landing login={false} />
+      </Route>
     </div>
   );
 };

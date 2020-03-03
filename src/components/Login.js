@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Input, Button } from "antd";
 // import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
@@ -14,7 +15,7 @@ const Login = (props) => {
             className="login-form"
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            style={{ maxWidth: "300px" }}
+            // style={{ maxWidth: "300px" }}
         >
             {/* USERNAME */}
             <Form.Item
@@ -50,7 +51,7 @@ const Login = (props) => {
                     Log In
                 </Button>
                 {/* REGISTER LINK <--- need to add */}
-                Don't have an account? Sign up now!
+                Don't have an account? <Link to="/signup">Sign up now!</Link>
             </Form.Item>
         </Form>
     )

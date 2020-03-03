@@ -1,9 +1,6 @@
 import React from "react";
-import {
-    Form,
-    Input,
-    Button
-} from "antd";
+import { Link } from "react-router-dom";
+import { Form, Input, Button } from "antd";
 
 const formItemLayout = {
     labelCol: {
@@ -23,22 +20,22 @@ const formItemLayout = {
       },
     },
   };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
-  };
+//   const tailFormItemLayout = {
+//     wrapperCol: {
+//       xs: {
+//         span: 24,
+//         offset: 0,
+//       },
+//       sm: {
+//         span: 16,
+//         offset: 8,
+//       },
+//     },
+//   };
 
 const Signup = (props) => {
 
-    const [form] = Form.useForm();
+    // const [form] = Form.useForm();
 
     const onFinish = values => {
         console.log("Received values from sign up form: ", values)
@@ -47,10 +44,11 @@ const Signup = (props) => {
     return (
         <Form
             {...formItemLayout}
-            form={form}
+            // form={form}
             name="register"
             onFinish={onFinish}
             scrollToFirstError
+            style={{border: "1px solid red"}}
         >
             {/* NAME */}
             <Form.Item
@@ -114,10 +112,13 @@ const Signup = (props) => {
             </Form.Item>
 
             {/* SIGN UP BUTTON */}
-            <Form.Item {...tailFormItemLayout}>
+            <Form.Item 
+            // {...tailFormItemLayout}
+            >
                 <Button type="primary" htmlType="submit">
                     Create an Account
                 </Button>
+                Already have an account? <Link to="/">Log in.</Link>
             </Form.Item>
         </Form>
     );
