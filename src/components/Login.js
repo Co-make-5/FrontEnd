@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { Input, Button } from "antd";
-// import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Form, Input, Button } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 const Login = (props) => {
 
@@ -19,16 +18,16 @@ const Login = (props) => {
             onFinish={onFinish}
         >
             <h2>Create real change in your community.</h2>
-            {/* USERNAME */}
+            {/* EMAIL */}
             <Form.Item
                 name="email"
-                rules={[{ 
-                    required: true, 
-                    message: "Please enter your email!"}
+                rules={[ 
+                    { required: true, message: "Your email is required to login" },
+                    { type: "email", message: "A valid email address must contain a single @ followed by a domain" }
                 ]}
             >
                 <Input
-                    // prefix={<UserOutlined className="site-form-item-icon"/>}
+                    prefix={<UserOutlined className="site-form-item-icon" />}
                     type="email"
                     placeholder="Email"
                 />
@@ -36,13 +35,13 @@ const Login = (props) => {
             {/* PASSWORD */}
             <Form.Item
                 name="password"
-                rules={[{ 
-                    required: true, 
-                    message: "Please enter your password!"}
+                rules={[
+                    { required: true, message: "Your password " },
+                    { min: 6, message: "Your password must be at least 6 characters long." }
                 ]}
             >
-                <Input 
-                    // prefix={<LockOutlined className="site-form-item-icon"/>}
+                <Input
+                    prefix={<LockOutlined className="site-form-item-icon" />}
                     type="password"
                     placeholder="Password"
                 />
@@ -52,7 +51,7 @@ const Login = (props) => {
                 <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
                     Log In
                 </Button>
-                {/* REGISTER LINK <--- need to add */}
+                {/* LINK TO SIGN UP FORM */}
                 Don't have an account? <Link to="/signup">Sign up now!</Link>
             </Form.Item>
         </Form>
