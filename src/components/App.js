@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {withRouter, Route} from 'react-router-dom';
 import {PrivateRoute} from '../utils/PrivateRoute';
 // Actions
-import {testing} from '../actions/actions';
+import {testing, userSignUp, userSignIn} from '../actions/actions';
 // Components
 import Landing from './Landing';
 
@@ -14,14 +14,23 @@ const App = props =>
 
   useEffect(() => 
   {
-    props.testing();
     console.log('useEffect Fired!');
   }, [])
+
+  const testUser = {
+    username: 'user1',
+    password: 'abc123'
+  }
+
+  const testSignupUser = {
+    username: 'testing2',
+    password: 'testing1'
+  }
 
   return (
     <div className="App">
       <h1>Testing!</h1>
-      <button onClick={ e => props.testing()}>Redux Testing</button>
+      <button onClick={ e => props.userSignIn(testSignupUser)}>Redux Testing</button>
       <Route exact path="/">
         <Landing login={true} />
       </Route>
@@ -39,4 +48,4 @@ const mapStateToProps = state =>
   };
 };
 
-export default withRouter(connect(mapStateToProps, {testing})(App))
+export default withRouter(connect(mapStateToProps, {testing, userSignUp, userSignIn})(App))
