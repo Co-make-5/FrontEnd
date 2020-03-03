@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button } from "antd";
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Input, Button } from "antd";
 // import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 const Login = (props) => {

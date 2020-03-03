@@ -9,6 +9,10 @@ import {testing, userSignUp, userSignIn} from '../actions/actions';
 // Components
 import Landing from './Landing';
 
+// ANTD
+import { Button } from 'antd';
+import { Icon } from '@ant-design/compatible'
+
 const App = props => 
 {
 
@@ -30,7 +34,8 @@ const App = props =>
   return (
     <div className="App">
       <h1>Testing!</h1>
-      <button onClick={ e => props.userSignIn(testSignupUser)}>Redux Testing</button>
+      <Icon type="smile" />
+      <Button onClick={ e => props.userSignIn(testSignupUser)}>Redux Testing</Button>
       <Route exact path="/">
         <Landing login={true} />
       </Route>
