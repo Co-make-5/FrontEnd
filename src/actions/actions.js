@@ -98,7 +98,7 @@ export const userSignOut = () => {
 
 // Fetching of ISSUES
 export const fetchIssues = () => {
-  const promise = axiosWithAuth.get(API + "issues");
+  const promise = axiosWithAuth().get(API + "issues");
 
   return dispatch => {
     dispatch({ type: FETCHING_ISSUES });
@@ -116,7 +116,7 @@ export const fetchIssues = () => {
 
 // Adding of ISSUE
 export const addIssue = (issue, userID) => {
-  const promise = axiosWithAuth.post(API + `users/${userID}/issues`, issue);
+  const promise = axiosWithAuth().post(API + `users/${userID}/issues`, issue);
 
   return dispatch => {
     dispatch({ type: ADDING_ISSUE });
@@ -134,7 +134,7 @@ export const addIssue = (issue, userID) => {
 
 // Upvoting of a issue
 export const upvoteIssue = (id, issue) => {
-  const promise = axiosWithAuth.put(API + "issues/" + id, issue);
+  const promise = axiosWithAuth().put(API + "issues/" + id, issue);
 
   return dispatch => {
     dispatch({ type: UPVOTING_ISSUE });
@@ -154,7 +154,7 @@ export const upvoteIssue = (id, issue) => {
 
 // Editing of a issue
 export const editIssue = (id, issue) => {
-  const promise = axiosWithAuth.put(API + "issues/" + id, issue);
+  const promise = axiosWithAuth().put(API + "issues/" + id, issue);
 
   return dispatch => {
     dispatch({ type: EDITING_ISSUE });
@@ -174,7 +174,7 @@ export const editIssue = (id, issue) => {
 
 // Editing of a issue
 export const deleteIssue = id => {
-  const promise = axiosWithAuth.delete(API + "issue/" + id);
+  const promise = axiosWithAuth().delete(API + "issue/" + id);
 
   return dispatch => {
     dispatch({ type: DELETING_ISSUE });
