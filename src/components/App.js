@@ -8,21 +8,14 @@ import {PrivateRoute} from '../utils/PrivateRoute';
 import {testing, userSignUp, userSignIn, fetchIssues} from '../actions/actions';
 // Components
 import Landing from './Landing';
-
-// ANTD
-import { Button } from 'antd';
-import { Icon } from '@ant-design/compatible'
+import Signup from './Signup';
+import Login from './Login';
 
 const App = props => 
 {
 
   let issues = props.issues
   console.log(issues)
-
-  const testUser = {
-    username: 'user1',
-    password: 'abc123'
-  }
 
   const testSignupUser = {
     username: 'testing2',
@@ -38,12 +31,12 @@ const App = props =>
 
   return (
     <div className="App">
-      <Route exact path="/">
-        <Landing login={true} />
-      </Route>
-      <Route path="/signup">
-        <Landing login={false} />
-      </Route>
+      <Route exact path="/"><Landing login={true} /></Route>
+      <Route path="/signup"><Landing login={false} /></Route>
+      <PrivateRoute exact path="/home" component={Signup}/>
+      <PrivateRoute exact path="/explore" component={Login}/>
+      <PrivateRoute exact path="/analytics" component={Signup}/>
+      <PrivateRoute exact path="/user" component={Login}/>
     </div>
   );
 };
