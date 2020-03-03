@@ -15,7 +15,6 @@ const Landing = ({login}) => {
         style={{height: "85vh"}}
         >
             <Col span={6} offset={3}>
-                <h2>Create real change in your community.</h2>
                 {login ? <Login /> : <Signup />}
             </Col>
             <Col span={12}>

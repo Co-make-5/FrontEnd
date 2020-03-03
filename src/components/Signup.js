@@ -4,38 +4,15 @@ import { Form, Input, Button } from "antd";
 
 const formItemLayout = {
     labelCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 8,
-      },
+        span: 24
     },
     wrapperCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 16,
-      },
-    },
-  };
-//   const tailFormItemLayout = {
-//     wrapperCol: {
-//       xs: {
-//         span: 24,
-//         offset: 0,
-//       },
-//       sm: {
-//         span: 16,
-//         offset: 8,
-//       },
-//     },
-//   };
+        span: 24
+    }
+};
+
 
 const Signup = (props) => {
-
-    // const [form] = Form.useForm();
 
     const onFinish = values => {
         console.log("Received values from sign up form: ", values)
@@ -44,12 +21,11 @@ const Signup = (props) => {
     return (
         <Form
             {...formItemLayout}
-            // form={form}
             name="register"
             onFinish={onFinish}
             scrollToFirstError
-            style={{border: "1px solid red"}}
         >
+            <h2>Register your voice &amp; get things done.</h2>
             {/* NAME */}
             <Form.Item
                 name="name"
@@ -112,10 +88,8 @@ const Signup = (props) => {
             </Form.Item>
 
             {/* SIGN UP BUTTON */}
-            <Form.Item 
-            // {...tailFormItemLayout}
-            >
-                <Button type="primary" htmlType="submit">
+            <Form.Item>
+                <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
                     Create an Account
                 </Button>
                 Already have an account? <Link to="/">Log in.</Link>

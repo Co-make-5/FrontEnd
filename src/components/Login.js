@@ -15,8 +15,8 @@ const Login = (props) => {
             className="login-form"
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            // style={{ maxWidth: "300px" }}
         >
+            <h2>Create real change in your community.</h2>
             {/* USERNAME */}
             <Form.Item
                 name="email"
