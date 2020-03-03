@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+// import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 const Login = (props) => {
 
@@ -18,21 +18,29 @@ const Login = (props) => {
         >
             {/* USERNAME */}
             <Form.Item
-                name="username"
-                rules={[{ required: true, message: "Please enter your username!"}]}
+                name="email"
+                rules={[{ 
+                    required: true, 
+                    message: "Please enter your email!"}
+                ]}
             >
                 <Input
-                    prefix={<UserOutlined className="site-form-item-icon"/>}
-                    placeholder="Username"
+                    // prefix={<UserOutlined className="site-form-item-icon"/>}
+                    type="email"
+                    placeholder="Email"
                 />
             </Form.Item>
             {/* PASSWORD */}
             <Form.Item
                 name="password"
-                rules={[{ required: true, message: "Please enter your password!"}]}
+                rules={[{ 
+                    required: true, 
+                    message: "Please enter your password!"}
+                ]}
             >
                 <Input 
-                    prefix={<LockOutlined className="site-form-item-icon"/>}
+                    // prefix={<LockOutlined className="site-form-item-icon"/>}
+                    type="password"
                     placeholder="Password"
                 />
             </Form.Item>
