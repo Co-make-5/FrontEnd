@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {withRouter, Route} from 'react-router-dom';
 import {PrivateRoute} from '../utils/PrivateRoute';
 // Actions
-import {testing, userSignUp, userSignIn} from '../actions/actions';
+import {testing, userSignUp, userSignIn, fetchIssues} from '../actions/actions';
 // Components
 import Landing from './Landing';
 
@@ -16,10 +16,8 @@ import { Icon } from '@ant-design/compatible'
 const App = props => 
 {
 
-  useEffect(() => 
-  {
-    console.log('useEffect Fired!');
-  }, [])
+  let issues = props.issues
+  console.log(issues)
 
   const testUser = {
     username: 'user1',
@@ -31,11 +29,15 @@ const App = props =>
     password: 'testing1'
   }
 
+  useEffect(() => 
+  {
+    props.userSignIn(testSignupUser);
+    props.fetchIssues();
+    console.log('useEffect Fired!');
+  }, [])
+
   return (
     <div className="App">
-      <h1>Testing!</h1>
-      <Icon type="smile" />
-      <Button onClick={ e => props.userSignIn(testSignupUser)}>Redux Testing</Button>
       <Route exact path="/">
         <Landing login={true} />
       </Route>
@@ -49,8 +51,9 @@ const App = props =>
 const mapStateToProps = state => 
 {
   return {
-    testing: state.testing
+    testing: state.testing,
+    issues: state.issues
   };
 };
 
-export default withRouter(connect(mapStateToProps, {testing, userSignUp, userSignIn})(App))
+export default withRouter(connect(mapStateToProps, {testing, userSignUp, userSignIn, fetchIssues})(App))
