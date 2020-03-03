@@ -37,7 +37,7 @@ export const DELETING_ISSUE = "DELETING_ISSUE";
 
 // Action Const's
 // IMPORTANT: Check this out
-const API = "https://localhost:5000/api/";
+const API = "https://comake-backend.herokuapp.com/api/";
 
 // Testing Method
 export const testing = () => {
@@ -48,42 +48,42 @@ export const testing = () => {
   };
 };
 
-// TODO: NEED TO REFACTOR 
 // User Signup Method
 export const userSignUp = user => {
-  axios
-    .post(API + "signup", user)
-    .then(res => {
-      localStorage.setItem("token", res.data.token);
-      // Could possibly add direct call to user login
-      //   Need to change state bool for signing up
-    })
-    .catch(err => {
-      return {
-        type: SIGNUP_USER_ERROR,
-        payload: err
-      }
-    });
+  const promise = axios.post(API + "auth/register", user)
+
+  return dispatch => {
+    dispatch({ type: SIGNING_UP });
+    promise
+      .then(res => {
+        console.log(res.data)
+        localStorage.setItem("token", res.data.token);
+        dispatch({ type: SIGNUP_USER, payload: res.data });
+        dispatch({ type: SIGNING_UP });
+      })
+      .catch(err => {
+        dispatch({ type: SIGNUP_USER_ERROR, payload: err.response.data });
+        dispatch({ type: SIGNING_UP });
+      });
+  };
 };
 
-// TODO: NEED TO REFACTOR
 // Signin Method for User's
 export const userSignIn = user => {
-  axios
-    .post(API + "login", user)
-    .then(res => {
-      // Need to change state bool for logging in
-      localStorage.setItem("token", res.data.token);
-    })
-    .catch(err => {
-      return {
-        type: LOGIN_USER_ERROR,
-        payload: err
-      };
-    });
-  return {
-    type: LOGIN_USER,
-    payload: localStorage.getItem("token")
+  const promise = axios.post(API + "auth/login", user)
+
+  return dispatch => {
+    dispatch({ type: LOGGING_IN });
+    promise
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        dispatch({ type: LOGIN_USER, payload: res.data.token });
+        dispatch({ type: LOGGING_IN });
+      })
+      .catch(err => {
+        dispatch({ type: LOGIN_USER_ERROR, payload: err.response.data });
+        dispatch({ type: LOGGING_IN });
+      });
   };
 };
 
@@ -115,8 +115,8 @@ export const fetchIssues = () => {
 };
 
 // Adding of ISSUE
-export const addIssue = issue => {
-  const promise = axiosWithAuth.post(API + "addIssue", issue);
+export const addIssue = (issue, userID) => {
+  const promise = axiosWithAuth.post(API + `users/${userID}/issues`, issue);
 
   return dispatch => {
     dispatch({ type: ADDING_ISSUE });
@@ -133,8 +133,8 @@ export const addIssue = issue => {
 };
 
 // Upvoting of a issue
-export const upvoteIssue = id => {
-  const promise = axiosWithAuth.put(API + "upvote/" + id);
+export const upvoteIssue = (id, issue) => {
+  const promise = axiosWithAuth.put(API + "issues/" + id, issue);
 
   return dispatch => {
     dispatch({ type: UPVOTING_ISSUE });
@@ -154,7 +154,7 @@ export const upvoteIssue = id => {
 
 // Editing of a issue
 export const editIssue = (id, issue) => {
-  const promise = axiosWithAuth.put(API + "issue/" + id, issue);
+  const promise = axiosWithAuth.put(API + "issues/" + id, issue);
 
   return dispatch => {
     dispatch({ type: EDITING_ISSUE });
