@@ -10,7 +10,7 @@ import {userSignUp, userSignIn, fetchIssues} from '../actions/actions';
 import Landing from './Landing';
 import Home from './aaron/Home';
 import Signup from './Signup';
-import User from './aaron/User';
+import User from './User/User';
 import Analytics from './aaron/Analytics';
 import Explore from './aaron/Explore';
 // Sidemenu && Dashboard
