@@ -37,9 +37,9 @@ const App = props =>
       <Route exact path="/"><Landing login={true} push={historyPush}/></Route>
       <Route path="/signup"><Landing login={false} push={historyPush}/></Route>
       <PrivateRoute exact path="/home" component={Dashboard} page={<Signup/>}/>
-      <PrivateRoute exact path="/explore" component={Home} page={<Explore/>}/>
-      <PrivateRoute exact path="/analytics" component={Home} page={<Analytics/>}/>
-      <PrivateRoute exact path="/user" component={Home} page={<User/>}/>
+      <PrivateRoute exact path="/explore" component={Dashboard} page={<Explore/>}/>
+      <PrivateRoute exact path="/analytics" component={Dashboard} page={<Analytics/>}/>
+      <PrivateRoute exact path="/user" component={Dashboard} page={<User/>}/>
     </div>
   );
 };

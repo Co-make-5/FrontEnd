@@ -5,7 +5,10 @@ import SideMenu from './SideMenu';
 
 const { Header, Content, Footer } = Layout;
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+
+    let Page = props.page
+    
     return (
         <Layout>
             <Header
@@ -42,7 +45,7 @@ const Dashboard = () => {
                             backgroundColor: "white"
                         }}
                     >
-                        This is where Page will go
+                        {Page}
                     </Content>
                     <Footer style={{textAlign: "center"}}>&copy; Co-Make 2020</Footer>
                 </Layout>
