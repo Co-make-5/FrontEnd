@@ -17,7 +17,7 @@ export const SIGNUP_USER_ERROR = "SIGNUP_USER_ERROR";
 export const FETCH_ISSUES = "FETCH_ISSUES";
 export const FETCH_ISSUES_ERROR = "FETCH_ISSUES_ERROR";
 // Fetching Current Users ISSUES Actions - Used for fetching all ISSUES that are in the system and handling possible errors
-export const FETCH_USER_ISSUES = "FETCH_ISSUES";
+export const USER_ISSUES = "FETCH_ISSUES";
 // Create ISSUE Actions - Used for creating a new ISSUE and handling possible errors
 export const ADD_ISSUE = "ADD_ISSUE";
 export const ADD_ISSUE_ERROR = "ADD_ISSUE_ERROR";
@@ -133,7 +133,7 @@ export const fetchUserIssues = id => {
     dispatch({ type: FETCHING_ISSUES });
     promise
       .then(res => {
-        dispatch({ type: FETCH_USER_ISSUES, payload: res.data });
+        dispatch({ type: USER_ISSUES, payload: res.data });
         dispatch({ type: FETCHING_ISSUES });
       })
       .catch(err => {

@@ -65,33 +65,4 @@ const SubmitIssueForm = ({ visible, onCreate, onCancel }) => {
     );
 }
 
-const NewIssue = () => {
-    const [visible, setVisible] = useState(false);
-
-    const onCreate = values => {
-        console.log("Received values of form: ", values)
-        setVisible(false);
-    };
-
-    return (
-        <>
-            <Button
-                type="primary"
-                onClick = {() => {
-                    setVisible(true);
-                }}
-            >
-                New Issue
-            </Button>
-            <SubmitIssueForm 
-                visible={visible}
-                onCreate={onCreate}
-                onCancel={() => {
-                    setVisible(false);
-                }}
-            />
-        </>
-    );
-}
-
 export default SubmitIssueForm;

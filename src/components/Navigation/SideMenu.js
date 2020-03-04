@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // Redux
 import {connect} from 'react-redux'
 // Actions
-import {addIssue} from '../../actions/actions'
+import {addIssue, fetchIssues} from '../../actions/actions'
 // Ant Design
 import { Layout, Menu } from 'antd';
 import { HomeOutlined, CompassOutlined, BarChartOutlined, UserOutlined, FileAddOutlined } from '@ant-design/icons';
@@ -35,6 +35,8 @@ const SideMenu = (props) => {
         }
 
         props.addIssue(issue, id)
+        setVisible(!visible)
+        props.fetchIssues()
     }
 
     return (
@@ -89,4 +91,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {addIssue})(SideMenu);
+export default connect(mapStateToProps, {addIssue, fetchIssues})(SideMenu);
