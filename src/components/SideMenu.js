@@ -20,7 +20,6 @@ const SideMenu = () => {
                 onCollapse={onCollapse} 
                 theme="light"
                 style={{
-                    overflow: "auto",
                     height: "90vh",
                     position: "fixed",
                     left: 0,
