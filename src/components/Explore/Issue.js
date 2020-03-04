@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, Badge, Modal, Button } from 'antd';
-import { PlusCircleOutlined, MinusCircleOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
 
 const Issue = (props) => {
-
     // count displays upvotes as badge on card
     let count = 3;
-
     //state for modal
     const [visible, setVisible] = useState(false);
-
     // opens modal
     let showModal = () => {
         setVisible(true);
     };
-
     // closes modal
     let handleCancel = e => {
         setVisible(false);
     };
 
     return (
-        <div style={{margin: "20px", width: "30%"}}>
+        <div style={{marginBottom: "32px", width: "30%"}}>
             <Badge count={count}>
                 <Card
-                    // style={{ width: 300}}
                     actions={[
                         // update onClicks here to increase or decrease upvotes when user clicks on corresponding button
                         <MinusCircleOutlined key="minus" onClick={showModal} />,

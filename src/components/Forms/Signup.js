@@ -92,7 +92,7 @@ const Signup = (props) => {
                 label="ZIP Code"
                 rules={[
                     { required: true, message: "Your 5-digit ZIP code is required to sign up" },
-                    { pattern: "^/d{5}$", message: "Please enter your 5-digit ZIP code"}
+                    // { pattern: "^/d{5}$", message: "Please enter your 5-digit ZIP code"}
                 ]}
             >
                 <Input />
