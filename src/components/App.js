@@ -5,9 +5,11 @@ import {connect} from 'react-redux';
 import {withRouter, Route} from 'react-router-dom';
 import {PrivateRoute} from '../utils/PrivateRoute';
 // Actions
-import {testing, userSignUp, userSignIn, fetchIssues} from '../actions/actions';
+import {userSignUp, userSignIn, fetchIssues} from '../actions/actions';
 // Components
 import Landing from './Landing';
+import Home from './aaron/home'
+import testing from './aaron/example'
 import Signup from './Signup';
 import Login from './Login';
 
@@ -33,10 +35,10 @@ const App = props =>
     <div className="App">
       <Route exact path="/"><Landing login={true} /></Route>
       <Route path="/signup"><Landing login={false} /></Route>
-      <PrivateRoute exact path="/home" component={Signup}/>
-      <PrivateRoute exact path="/explore" component={Login}/>
-      <PrivateRoute exact path="/analytics" component={Signup}/>
-      <PrivateRoute exact path="/user" component={Login}/>
+      <PrivateRoute exact path="/home" component={Home} data={{...props}} page={<Signup/>}/>
+      <PrivateRoute exact path="/explore" component={Home} data={{...props}} page={<Signup/>}/>
+      <PrivateRoute exact path="/analytics" component={Home} data={{...props}} page={<Signup/>}/>
+      <PrivateRoute exact path="/user" component={Home} data={{...props}} page={<Signup/>}/>
     </div>
   );
 };
