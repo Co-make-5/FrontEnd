@@ -33,7 +33,7 @@ const SideMenu = props => {
             </Menu.Item>
             <Menu.Item key="4">
                   <Icon type="user"/>
-                  <Link to='/analytics'>My Account</Link>
+                  <Link to='/user'>My Account</Link>
             </Menu.Item>
             <Menu.Item key="6">
                   <Icon type="logout" />

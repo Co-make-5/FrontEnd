@@ -4,18 +4,18 @@ import Login from "./Login";
 import LandingIllustration from "../assets/LandingIllustration.jpg";
 import Signup from './Signup';
 
-const Landing = ({login}) => {
+const Landing = ({login, push}) => {
 
     return (
         <Row 
-        type="flex"
-        gutter={[48]}
+        // type="flex"
+        // gutter={[48]}
         align="middle" 
         justify="space-around"
         style={{height: "85vh"}}
         >
             <Col span={6} offset={3}>
-                {login ? <Login /> : <Signup />}
+                {login ? <Login push={push}/> : <Signup push={push}/>}
             </Col>
             <Col span={12}>
                 <img 

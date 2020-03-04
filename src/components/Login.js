@@ -1,14 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+// Redux Connect
+import {connect} from 'react-redux';
+// Redux Actions
+import {userSignIn} from '../actions/actions';
+// Login Utility
+import signIn from '../utils/loginPromise'
+// Router
+import { Link } from "react-router-dom";
+// Ant Design
 import '@ant-design/compatible/assets/index.css';
 import { Form, Input, Button } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 const Login = (props) => {
 
     const onFinish = values => {
-        console.log("Received values from login form:", values);
+        // This takes the values object and passes it directly to login promise
+        signIn(props.userSignIn, values)
+        .then(() => props.push("/home"))
+        .catch(err => console.log(err))
     }
+
 
     return (
         <Form
@@ -20,10 +31,10 @@ const Login = (props) => {
             <h2>Create real change in your community.</h2>
             {/* EMAIL */}
             <Form.Item
-                name="email"
-                rules={[ 
-                    { required: true, message: "Your email is required to login" },
-                    { type: "email", message: "A valid email address must contain a single @ followed by a domain" }
+                name="username"
+                rules={[{ 
+                    required: true, 
+                    message: "Please enter your email!"}
                 ]}
             >
                 <Input
@@ -58,4 +69,11 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        testing: state.testing
+        // Need to bring in status indicators
+    }
+}
+
+export default connect(mapStateToProps, {userSignIn})(Login);
