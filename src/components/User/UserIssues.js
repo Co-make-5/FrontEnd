@@ -12,12 +12,17 @@ const UserIssues = (props) => {
 
     let data = props.issues;
 
+    const temp = () => {
+      return
+    }
+
 
     return (
         <div className="infinite-container">
         <InfiniteScroll
           initialLoad={false}
           pageStart={0}
+          loadMore={temp}
           useWindow={false}
         >
           <List

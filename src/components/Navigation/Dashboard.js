@@ -15,7 +15,6 @@ const Dashboard = (props) => {
 
     let Page = props.page
 
-    console.log(props.data)
     const bye = () => {
         props.data('/')
     }

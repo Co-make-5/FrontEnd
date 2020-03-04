@@ -30,7 +30,7 @@ const SubmitIssueForm = ({ visible, onCreate, onCancel }) => {
             >
                 {/* ISSUE TITLE */}
                 <Form.Item
-                    name="title"
+                    name="issue_name"
                     label="Title"
                     rules = {[{ required: true, whitespace: true, message: "Please enter a descriptive & informative title" }]}
                 >
@@ -41,6 +41,22 @@ const SubmitIssueForm = ({ visible, onCreate, onCancel }) => {
                     name="description"
                     label="Description"
                     rules= {[{ required: true, whitespace: true, message: "Please describe the issue you'd like to see fixed"}]}
+                >
+                    <Input type="textarea" />
+                </Form.Item>
+                {/* ISSUE ZIP */}
+                <Form.Item
+                    name="zip"
+                    label="Zipcode"
+                    rules= {[{ required: true, whitespace: false, message: "Please add a zipcode"}]}
+                >
+                    <Input type="textarea" />
+                </Form.Item>
+                {/* OPTIONAL LOCATION NAME */}
+                <Form.Item
+                    name="location"
+                    label="City"
+                    rules= {[{ required: false, whitespace: true, message: "Optional City name"}]}
                 >
                     <Input type="textarea" />
                 </Form.Item>
@@ -78,4 +94,4 @@ const NewIssue = () => {
     );
 }
 
-export default NewIssue;
+export default SubmitIssueForm;
