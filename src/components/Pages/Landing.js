@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col } from "antd";
-import Login from "./Login";
-import LandingIllustration from "../assets/LandingIllustration.jpg";
-import Signup from './Signup';
+import Login from "../Forms/Login";
+import LandingIllustration from "../../assets/LandingIllustration.jpg";
+import Signup from '../Forms/Signup';
 
 const Landing = ({login, push}) => {
 

@@ -1,11 +1,25 @@
 import React from 'react';
+// Redux
+import {connect} from 'react-redux'
+// Actions
+import {userSignOut} from '../../actions/actions'
+// Ant Design
 import { Layout, Row, Col, Button } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
+// Components
 import SideMenu from './SideMenu';
 
 const { Header, Content, Footer } = Layout;
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+
+    let Page = props.page
+
+    console.log(props.data)
+    const bye = () => {
+        props.data('/')
+    }
+    
     return (
         <Layout>
             <Header
@@ -22,7 +36,7 @@ const Dashboard = () => {
                         <h1>Co-Make</h1>
                     </Col>
                     <Col>
-                        <Button type="primary" ghost style={{width: "105px"}}>
+                        <Button onClick={bye} type="primary" ghost style={{width: "105px"}}>
                             <Row align="middle" justify="space-between">
                                 Log Out
                                 <LogoutOutlined />
@@ -42,7 +56,7 @@ const Dashboard = () => {
                             backgroundColor: "white"
                         }}
                     >
-                        This is where Page will go
+                        {Page}
                     </Content>
                     <Footer style={{textAlign: "center"}}>&copy; Co-Make 2020</Footer>
                 </Layout>
