@@ -19,7 +19,7 @@ const Dashboard = () => {
             >
                 <Row align="middle" justify="space-between">
                     <Col>
-                        <h1>Co-make</h1>
+                        <h1>Co-Make</h1>
                     </Col>
                     <Col>
                         <Button type="primary" ghost style={{width: "105px"}}>
@@ -44,7 +44,7 @@ const Dashboard = () => {
                     >
                         This is where Page will go
                     </Content>
-                    <Footer style={{textAlign: "center"}}>&copy; Co-make 5 2020</Footer>
+                    <Footer style={{textAlign: "center"}}>&copy; Co-Make 2020</Footer>
                 </Layout>
             </Layout>
         </Layout>

@@ -3,7 +3,6 @@ import React from 'react';
 import { List } from 'antd';
 // Components
 import IssueRow from './IssueRow'
-import IssueCard from './IssueCard';
 const IssueList = (props) => {
 
     const data = props.issues

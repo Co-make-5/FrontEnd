@@ -13,6 +13,8 @@ import Signup from './Signup';
 import User from './aaron/User';
 import Analytics from './aaron/Analytics';
 import Explore from './aaron/Explore';
+// Sidemenu && Dashboard
+import Dashboard from './Dashboard'
 
 const App = props => 
 {
@@ -34,7 +36,7 @@ const App = props =>
     <div className="App">
       <Route exact path="/"><Landing login={true} push={historyPush}/></Route>
       <Route path="/signup"><Landing login={false} push={historyPush}/></Route>
-      <PrivateRoute exact path="/home" component={Home} page={<Signup/>}/>
+      <PrivateRoute exact path="/home" component={Dashboard} page={<Signup/>}/>
       <PrivateRoute exact path="/explore" component={Home} page={<Explore/>}/>
       <PrivateRoute exact path="/analytics" component={Home} page={<Analytics/>}/>
       <PrivateRoute exact path="/user" component={Home} page={<User/>}/>
@@ -44,7 +46,26 @@ const App = props =>
 
 const mapStateToProps = state => 
 {
-  return {};
+  return {
+    issues: state.issues
+  };
 };
+
+// Redux Connect
+// import {connect} from 'react-redux';
+
+// useEffect(() => 
+// {
+//   props.fetchIssues();
+// }, [])
+
+// const mapStateToProps = state => 
+// {
+//   return {
+//     issues: state.issues
+//   };
+// };
+
+// export default connect(mapStateToProps, {})(<NAME>))
 
 export default withRouter(connect(mapStateToProps, {userSignUp, userSignIn, fetchIssues})(App))
