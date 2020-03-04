@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { HomeOutlined, CompassOutlined, BarChartOutlined, UserOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const { Sider } = Layout;
 
@@ -30,22 +31,22 @@ const SideMenu = () => {
 
                     <Menu.Item key="1">
                         <HomeOutlined />
-                        <span>Home</span>
+                        <Link to='/home'>Home</Link>
                     </Menu.Item>
 
                     <Menu.Item key="2">
                         <CompassOutlined />
-                        <span>Explore</span>
+                        <Link to='/explore'>Explore</Link>
                     </Menu.Item>
 
                     <Menu.Item key="3">
                         <BarChartOutlined />
-                        <span>Analytics</span>
+                        <Link to='/analytics'>Analytics</Link>
                     </Menu.Item>
 
                     <Menu.Item key="4">
                         <UserOutlined />
-                        <span>Profile</span>
+                        <Link to='/user'>Profile</Link>
                     </Menu.Item>
                 </Menu>
             </Sider>

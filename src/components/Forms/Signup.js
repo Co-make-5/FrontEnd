@@ -2,9 +2,9 @@ import React from "react";
 // Redux Connect
 import {connect} from 'react-redux';
 // Redux Actions
-import {userSignUp, userSignIn} from '../actions/actions';
+import {userSignUp, userSignIn} from '../../actions/actions';
 // Login Util
-import signIn from '../utils/loginPromise';
+import signIn from '../../utils/loginPromise';
 // Router
 import { Link } from "react-router-dom";
 // Ant Design

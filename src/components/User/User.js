@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 // Actions
 import {fetchIssues} from '../../actions/actions';
 // Components
-import IssueList from './IssueList'
+import IssueList from '../aaron/IssueList'
+import UserIssues from './UserIssues';
 
 const User = (props) => {
 
@@ -15,8 +16,8 @@ const User = (props) => {
 
     return (
         <>
-            <h1>User Page</h1>
-            <IssueList issues={props.issues}/>
+            <h5 style={{textAlign: 'center'}}>Your Issue's</h5>
+            <UserIssues/>
         </>
     )
 }

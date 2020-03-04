@@ -7,14 +7,13 @@ import {PrivateRoute} from '../utils/PrivateRoute';
 // Actions
 import {userSignUp, userSignIn, fetchIssues} from '../actions/actions';
 // Components
-import Landing from './Landing';
-import Home from './aaron/Home';
-import Signup from './Signup';
-import User from './aaron/User';
+import Landing from './Pages/Landing';
+import Signup from './Forms/Signup';
+import User from './User/User';
 import Analytics from './aaron/Analytics';
 import Explore from './aaron/Explore';
 // Sidemenu && Dashboard
-import Dashboard from './Dashboard'
+import Dashboard from './Navigation/Dashboard'
 
 const App = props => 
 {
@@ -36,10 +35,10 @@ const App = props =>
     <div className="App">
       <Route exact path="/"><Landing login={true} push={historyPush}/></Route>
       <Route path="/signup"><Landing login={false} push={historyPush}/></Route>
-      <PrivateRoute exact path="/home" component={Dashboard} page={<Signup/>}/>
-      <PrivateRoute exact path="/explore" component={Home} page={<Explore/>}/>
-      <PrivateRoute exact path="/analytics" component={Home} page={<Analytics/>}/>
-      <PrivateRoute exact path="/user" component={Home} page={<User/>}/>
+      <PrivateRoute exact path="/home" component={Dashboard} data={historyPush} page={<Signup/>}/>
+      <PrivateRoute exact path="/explore" component={Dashboard} data={historyPush} page={<Explore/>}/>
+      <PrivateRoute exact path="/analytics" component={Dashboard} data={historyPush} page={<Analytics/>}/>
+      <PrivateRoute exact path="/user" component={Dashboard} data={historyPush} page={<User/>}/>
     </div>
   );
 };
