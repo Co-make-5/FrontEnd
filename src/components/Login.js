@@ -1,15 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Form } from '@ant-design/compatible';
+import React from "react";
+// Redux Connect
+import {connect} from 'react-redux';
+// Redux Actions
+import {userSignIn} from '../actions/actions';
+// Login Utility
+import signIn from '../utils/loginPromise'
+// Router
+import { Link } from "react-router-dom";
+// Ant Design
 import '@ant-design/compatible/assets/index.css';
-import { Input, Button } from "antd";
-// import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Form, Input, Button } from "antd";
 
 const Login = (props) => {
 
     const onFinish = values => {
-        console.log("Received values from login form:", values);
+        // This takes the values object and passes it directly to login
+        signIn(props.userSignIn, values)
+        .then(() => props.push("/home"))
+        .catch(err => console.log(err))
     }
+
 
     return (
         <Form
@@ -21,7 +31,7 @@ const Login = (props) => {
             <h2>Create real change in your community.</h2>
             {/* USERNAME */}
             <Form.Item
-                name="email"
+                name="username"
                 rules={[{ 
                     required: true, 
                     message: "Please enter your email!"}
@@ -59,4 +69,11 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        testing: state.testing
+        // Need to bring in status indicators
+    }
+}
+
+export default connect(mapStateToProps, {userSignIn})(Login);

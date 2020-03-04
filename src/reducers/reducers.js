@@ -34,6 +34,7 @@ import {
 const initialState = {
   testing: "",
   user: "",
+  userID: "",
   loginError: "",
   fetchError: "",
   addError: "",
@@ -75,7 +76,7 @@ export const rootReducer = (state = initialState, action) => {
     case SIGNUP_USER:
       return {
         ...state,
-        user: action.payload
+        userID: action.payload[0]
       };
     case SIGNUP_USER_ERROR:
       return {

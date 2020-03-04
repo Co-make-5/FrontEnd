@@ -8,47 +8,42 @@ import {PrivateRoute} from '../utils/PrivateRoute';
 import {userSignUp, userSignIn, fetchIssues} from '../actions/actions';
 // Components
 import Landing from './Landing';
-import Home from './aaron/home'
-import testing from './aaron/example'
+import Home from './aaron/Home';
 import Signup from './Signup';
-import Login from './Login';
+import User from './aaron/User';
+import Analytics from './aaron/Analytics';
+import Explore from './aaron/Explore';
 
 const App = props => 
 {
 
-  let issues = props.issues
-  console.log(issues)
-
-  const testSignupUser = {
-    username: 'testing2',
-    password: 'testing1'
-  }
-
   useEffect(() => 
   {
-    props.userSignIn(testSignupUser);
-    props.fetchIssues();
-    console.log('useEffect Fired!');
+    // props.userSignIn(testSignupUser)
+    // .then(res => console.log(res))
+    // .catch(err => console.log("ERR:", err))
   }, [])
+
+  const historyPush = location => {
+    props.history.push(location);
+  }
+
 
   return (
     <div className="App">
-      <Route exact path="/"><Landing login={true} /></Route>
-      <Route path="/signup"><Landing login={false} /></Route>
-      <PrivateRoute exact path="/home" component={Home} data={{...props}} page={<Signup/>}/>
-      <PrivateRoute exact path="/explore" component={Home} data={{...props}} page={<Signup/>}/>
-      <PrivateRoute exact path="/analytics" component={Home} data={{...props}} page={<Signup/>}/>
-      <PrivateRoute exact path="/user" component={Home} data={{...props}} page={<Signup/>}/>
+      <Route exact path="/"><Landing login={true} push={historyPush}/></Route>
+      <Route path="/signup"><Landing login={false} push={historyPush}/></Route>
+      <PrivateRoute exact path="/home" component={Home} page={<Signup/>}/>
+      <PrivateRoute exact path="/explore" component={Home} page={<Explore/>}/>
+      <PrivateRoute exact path="/analytics" component={Home} page={<Analytics/>}/>
+      <PrivateRoute exact path="/user" component={Home} page={<User/>}/>
     </div>
   );
 };
 
 const mapStateToProps = state => 
 {
-  return {
-    testing: state.testing,
-    issues: state.issues
-  };
+  return {};
 };
 
-export default withRouter(connect(mapStateToProps, {testing, userSignUp, userSignIn, fetchIssues})(App))
+export default withRouter(connect(mapStateToProps, {userSignUp, userSignIn, fetchIssues})(App))

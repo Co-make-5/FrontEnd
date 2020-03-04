@@ -49,42 +49,47 @@ export const testing = () => {
 };
 
 // User Signup Method
-export const userSignUp = user => {
-  const promise = axios.post(API + "auth/register", user)
+export const userSignUp = user => dispatch => {
 
-  return dispatch => {
+  console.log(user)
+
+  return new Promise((resolve, reject) => {
     dispatch({ type: SIGNING_UP });
-    promise
-      .then(res => {
-        console.log(res.data)
-        localStorage.setItem("token", res.data.token);
-        dispatch({ type: SIGNUP_USER, payload: res.data });
-        dispatch({ type: SIGNING_UP });
-      })
-      .catch(err => {
-        dispatch({ type: SIGNUP_USER_ERROR, payload: err.response.data });
-        dispatch({ type: SIGNING_UP });
-      });
-  };
+    axios.post(API + "auth/register", user)
+    .then(res => {
+      localStorage.setItem("userID", res.data);
+      dispatch({ type: SIGNUP_USER, payload: res.data });
+      dispatch({ type: SIGNING_UP });
+      resolve();
+    })
+    .catch(err => {
+      dispatch({ type: SIGNUP_USER_ERROR, payload: err });
+      dispatch({ type: SIGNING_UP });
+      reject();
+    });
+  })
 };
 
 // Signin Method for User's
-export const userSignIn = user => {
-  const promise = axios.post(API + "auth/login", user)
+export const userSignIn = user => dispatch => {
 
-  return dispatch => {
+  console.log(user)
+
+  return new Promise((resolve, reject) => {
     dispatch({ type: LOGGING_IN });
-    promise
-      .then(res => {
-        localStorage.setItem("token", res.data.token);
-        dispatch({ type: LOGIN_USER, payload: res.data.token });
-        dispatch({ type: LOGGING_IN });
-      })
-      .catch(err => {
-        dispatch({ type: LOGIN_USER_ERROR, payload: err.response.data });
-        dispatch({ type: LOGGING_IN });
-      });
-  };
+    axios.post(API + "auth/login", user)
+    .then(res => {
+      localStorage.setItem("token", res.data.token);
+      dispatch({ type: LOGIN_USER, payload: res.data.token });
+      dispatch({ type: LOGGING_IN });
+      resolve(res.data);
+    })
+    .catch(err => {
+      dispatch({ type: LOGIN_USER_ERROR, payload: err });
+      dispatch({ type: LOGGING_IN });
+      reject(err);
+    });
+  })
 };
 
 // Signout Method for User's

@@ -1,8 +1,15 @@
 import React from "react";
+// Redux Connect
+import {connect} from 'react-redux';
+// Redux Actions
+import {userSignUp, userSignIn} from '../actions/actions';
+// Login Util
+import signIn from '../utils/loginPromise';
+// Router
 import { Link } from "react-router-dom";
-import { Form } from '@ant-design/compatible';
+// Ant Design
 import '@ant-design/compatible/assets/index.css';
-import { Input, Button } from "antd";
+import { Form, Input, Button } from "antd";
 
 const formItemLayout = {
     labelCol: {
@@ -16,8 +23,23 @@ const formItemLayout = {
 
 const Signup = (props) => {
 
+    let tempSignupUser = {
+        username: '',
+        password: ''
+      }
+
     const onFinish = values => {
-        console.log("Received values from sign up form: ", values)
+        // Passes value object into useSignUp
+        tempSignupUser = {
+            username: values.username,
+            password: values.password
+        }
+        props.userSignUp(tempSignupUser)
+        .then(() => {
+            signIn(props.userSignIn, tempSignupUser)
+            .then(() => props.push("/home"))
+            .catch(err => console.log(err))
+        })
     };
 
     return (
@@ -45,7 +67,7 @@ const Signup = (props) => {
 
             {/* EMAIL */}
             <Form.Item
-                name="email"
+                name="username"
                 label="Email"
                 rules={[
                     {
@@ -100,4 +122,11 @@ const Signup = (props) => {
     );
 };
 
-export default Signup;
+const mapStateToProps = state => {
+    return {
+        testing: state.testing
+        // Need to bring in status indicators
+    }
+}
+
+export default connect(mapStateToProps, {userSignUp, userSignIn})(Signup);
