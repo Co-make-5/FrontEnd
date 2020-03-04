@@ -55,11 +55,8 @@ const Signup = (props) => {
                 name="name"
                 label="Name"
                 rules={[
-                    {
-                        required: true,
-                        message: "Please enter your name!",
-                        whitespace: true
-                    }
+                    { required: true, whitespace: true, message: "Please enter your name!" },
+                    { min: 3, message: "Oops! Your name should be at least 3 characters"}
                 ]}
             >
                 <Input />
@@ -70,17 +67,11 @@ const Signup = (props) => {
                 name="username"
                 label="Email"
                 rules={[
-                    {
-                        type: "email",
-                        message: "A valid email address must contain a single @ followed by a domain"
-                    },
-                    {
-                        required: true,
-                        message: "Please enter your email address!"
-                    }
+                    { type: "email", message: "A valid email address must contain a single @ followed by a domain" },
+                    { required: true, message: "Please enter your email address!" }
                 ]}
             >
-                <Input />
+                <Input type="email"/>
             </Form.Item>
 
             {/* PASSWORD */}
@@ -88,10 +79,8 @@ const Signup = (props) => {
                 name="password"
                 label="Password"
                 rules={[
-                    {
-                        required: true,
-                        message: "Please enter a password"
-                    }
+                    { required: true, message: "Please enter a password" },
+                    { min: 6, message: "Your password must be at least 6 characters long." }
                 ]}
             >
                 <Input.Password />
@@ -102,10 +91,8 @@ const Signup = (props) => {
                 name="zipcode"
                 label="ZIP Code"
                 rules={[
-                    {
-                        required: true,
-                        message: "Please enter your 5-digit ZIP code"
-                    }
+                    { required: true, message: "Your 5-digit ZIP code is required to sign up" },
+                    { pattern: "^/d{5}$", message: "Please enter your 5-digit ZIP code"}
                 ]}
             >
                 <Input />

@@ -29,7 +29,7 @@ const Login = (props) => {
             onFinish={onFinish}
         >
             <h2>Create real change in your community.</h2>
-            {/* USERNAME */}
+            {/* EMAIL */}
             <Form.Item
                 name="username"
                 rules={[{ 
@@ -38,7 +38,7 @@ const Login = (props) => {
                 ]}
             >
                 <Input
-                    // prefix={<UserOutlined className="site-form-item-icon"/>}
+                    prefix={<UserOutlined className="site-form-item-icon" />}
                     type="email"
                     placeholder="Email"
                 />
@@ -46,13 +46,13 @@ const Login = (props) => {
             {/* PASSWORD */}
             <Form.Item
                 name="password"
-                rules={[{ 
-                    required: true, 
-                    message: "Please enter your password!"}
+                rules={[
+                    { required: true, message: "Your password " },
+                    { min: 6, message: "Your password must be at least 6 characters long." }
                 ]}
             >
-                <Input 
-                    // prefix={<LockOutlined className="site-form-item-icon"/>}
+                <Input
+                    prefix={<LockOutlined className="site-form-item-icon" />}
                     type="password"
                     placeholder="Password"
                 />
@@ -62,7 +62,7 @@ const Login = (props) => {
                 <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
                     Log In
                 </Button>
-                {/* REGISTER LINK <--- need to add */}
+                {/* LINK TO SIGN UP FORM */}
                 Don't have an account? <Link to="/signup">Sign up now!</Link>
             </Form.Item>
         </Form>
