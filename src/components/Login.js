@@ -14,7 +14,7 @@ import { Form, Input, Button } from "antd";
 const Login = (props) => {
 
     const onFinish = values => {
-        // This takes the values object and passes it directly to login
+        // This takes the values object and passes it directly to login promise
         signIn(props.userSignIn, values)
         .then(() => props.push("/home"))
         .catch(err => console.log(err))

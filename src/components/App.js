@@ -22,6 +22,7 @@ const App = props =>
     // props.userSignIn(testSignupUser)
     // .then(res => console.log(res))
     // .catch(err => console.log("ERR:", err))
+    // props.fetchIssues();
   }, [])
 
   const historyPush = location => {

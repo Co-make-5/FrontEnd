@@ -5,6 +5,8 @@ import {
   LOGIN_USER,
   LOGIN_USER_ERROR,
   LOGGING_IN,
+  // Setting of UserID
+  SET_USER_ID,
   // Signup User
   SIGNUP_USER,
   SIGNUP_USER_ERROR,
@@ -13,6 +15,9 @@ import {
   FETCH_ISSUES,
   FETCH_ISSUES_ERROR,
   FETCHING_ISSUES,
+  // Fetch Issues
+  FETCH_USER_ISSUES,
+  FETCH_USER_ISSUES_ERROR,
   // Adding Issue
   ADD_ISSUE,
   ADD_ISSUE_ERROR,
@@ -48,7 +53,8 @@ const initialState = {
   upvotingIssue: false,
   editingIssue: false,
   deletingIssue: false,
-  issues: []
+  issues: [],
+  userIssues: []
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -73,6 +79,11 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         logginIn: !state.logginIn
       };
+    case SET_USER_ID:
+      return {
+        ...state,
+        userID: action.payload
+      }
     case SIGNUP_USER:
       return {
         ...state,
@@ -102,6 +113,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingData: !state.fetchingData
+      };
+    case FETCH_USER_ISSUES:
+      return {
+        ...state,
+        userIssues: action.payload
       };
     case ADD_ISSUE:
       return {

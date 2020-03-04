@@ -8,12 +8,16 @@ export const TESTING = "TESTING";
 // Login Actions - Login action functionality and handling possible errors
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
+// Setting of UserID
+export const SET_USER_ID = "SET_USER_ID";
 // Signup Actions - Signup action functionality and handling possible errors
 export const SIGNUP_USER = "SIGNUP_USER";
 export const SIGNUP_USER_ERROR = "SIGNUP_USER_ERROR";
 // Fetching ISSUES Actions - Used for fetching all ISSUES that are in the system and handling possible errors
 export const FETCH_ISSUES = "FETCH_ISSUES";
 export const FETCH_ISSUES_ERROR = "FETCH_ISSUES_ERROR";
+// Fetching Current Users ISSUES Actions - Used for fetching all ISSUES that are in the system and handling possible errors
+export const FETCH_USER_ISSUES = "FETCH_ISSUES";
 // Create ISSUE Actions - Used for creating a new ISSUE and handling possible errors
 export const ADD_ISSUE = "ADD_ISSUE";
 export const ADD_ISSUE_ERROR = "ADD_ISSUE_ERROR";
@@ -73,14 +77,15 @@ export const userSignUp = user => dispatch => {
 // Signin Method for User's
 export const userSignIn = user => dispatch => {
 
-  console.log(user)
 
   return new Promise((resolve, reject) => {
     dispatch({ type: LOGGING_IN });
     axios.post(API + "auth/login", user)
     .then(res => {
+      console.log(res.data)
       localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_USER, payload: res.data.token });
+      dispatch({ type: SET_USER_ID, payload: res.data.id });
       dispatch({ type: LOGGING_IN });
       resolve(res.data);
     })
@@ -110,6 +115,24 @@ export const fetchIssues = () => {
     promise
       .then(res => {
         dispatch({ type: FETCH_ISSUES, payload: res.data });
+        dispatch({ type: FETCHING_ISSUES });
+      })
+      .catch(err => {
+        dispatch({ type: FETCH_ISSUES_ERROR, payload: err });
+        dispatch({ type: FETCHING_ISSUES });
+      });
+  };
+};
+
+// Fetching of Current User's ISSUES
+export const fetchUserIssues = id => {
+  const promise = axiosWithAuth().get(API + `users/${id}/issues`);
+
+  return dispatch => {
+    dispatch({ type: FETCHING_ISSUES });
+    promise
+      .then(res => {
+        dispatch({ type: FETCH_USER_ISSUES, payload: res.data });
         dispatch({ type: FETCHING_ISSUES });
       })
       .catch(err => {

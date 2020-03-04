@@ -8,8 +8,8 @@ const Landing = ({login, push}) => {
 
     return (
         <Row 
-        type="flex"
-        gutter={[48]}
+        // type="flex"
+        // gutter={[48]}
         align="middle" 
         justify="space-around"
         style={{height: "85vh"}}
