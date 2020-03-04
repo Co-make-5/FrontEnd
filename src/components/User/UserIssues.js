@@ -1,8 +1,6 @@
 import React from 'react';
 // Redux Connect
 import {connect} from 'react-redux';
-// Actions
-import {fetchIssues} from '../../actions/actions';
 // Componenets
 import Tags from '../Accents/Tags'
 import IssueLikes from '../Accents/IssueLikes';
@@ -16,7 +14,7 @@ const UserIssues = (props) => {
 
 
     return (
-        <div className="demo-infinite-container">
+        <div className="infinite-container">
         <InfiniteScroll
           initialLoad={false}
           pageStart={0}
@@ -36,11 +34,6 @@ const UserIssues = (props) => {
               </List.Item>
             )}
           >
-            {props.loading && (
-              <div className="demo-loading-container">
-                <Spin />
-              </div>
-            )}
           </List>
         </InfiniteScroll>
       </div>
@@ -49,9 +42,8 @@ const UserIssues = (props) => {
 
 const mapPropsToState = state => {
     return {
-        issues: state.issues,
-        loading: state.fetchingIssues
+        issues: state.issues
     }
 }
 
-export default connect(mapPropsToState, {fetchIssues})(UserIssues)
+export default connect(mapPropsToState, {})(UserIssues)

@@ -31,25 +31,21 @@ const SideMenu = () => {
 
                     <Menu.Item key="1">
                         <HomeOutlined />
-                        <span>Home</span>
                         <Link to='/home'>Home</Link>
                     </Menu.Item>
 
                     <Menu.Item key="2">
                         <CompassOutlined />
-                        <span>Explore</span>
                         <Link to='/explore'>Explore</Link>
                     </Menu.Item>
 
                     <Menu.Item key="3">
                         <BarChartOutlined />
-                        <span>Analytics</span>
                         <Link to='/analytics'>Analytics</Link>
                     </Menu.Item>
 
                     <Menu.Item key="4">
                         <UserOutlined />
-                        <span>Profile</span>
                         <Link to='/user'>Profile</Link>
                     </Menu.Item>
                 </Menu>
