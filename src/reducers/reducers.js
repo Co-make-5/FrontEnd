@@ -16,8 +16,7 @@ import {
   FETCH_ISSUES_ERROR,
   FETCHING_ISSUES,
   // Fetch Issues
-  FETCH_USER_ISSUES,
-  FETCH_USER_ISSUES_ERROR,
+  USER_ISSUES,
   // Adding Issue
   ADD_ISSUE,
   ADD_ISSUE_ERROR,
@@ -114,7 +113,7 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         fetchingData: !state.fetchingData
       };
-    case FETCH_USER_ISSUES:
+    case USER_ISSUES:
       return {
         ...state,
         userIssues: action.payload

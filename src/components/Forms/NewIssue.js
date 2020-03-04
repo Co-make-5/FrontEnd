@@ -30,7 +30,7 @@ const SubmitIssueForm = ({ visible, onCreate, onCancel }) => {
             >
                 {/* ISSUE TITLE */}
                 <Form.Item
-                    name="title"
+                    name="issue_name"
                     label="Title"
                     rules = {[{ required: true, whitespace: true, message: "Please enter a descriptive & informative title" }]}
                 >
@@ -44,38 +44,25 @@ const SubmitIssueForm = ({ visible, onCreate, onCancel }) => {
                 >
                     <Input type="textarea" />
                 </Form.Item>
+                {/* ISSUE ZIP */}
+                <Form.Item
+                    name="zip"
+                    label="Zipcode"
+                    rules= {[{ required: true, whitespace: false, message: "Please add a zipcode"}]}
+                >
+                    <Input type="textarea" />
+                </Form.Item>
+                {/* OPTIONAL LOCATION NAME */}
+                <Form.Item
+                    name="location"
+                    label="City"
+                    rules= {[{ required: false, whitespace: true, message: "Optional City name"}]}
+                >
+                    <Input type="textarea" />
+                </Form.Item>
             </Form>
         </Modal>
     );
 }
 
-const NewIssue = () => {
-    const [visible, setVisible] = useState(false);
-
-    const onCreate = values => {
-        console.log("Received values of form: ", values)
-        setVisible(false);
-    };
-
-    return (
-        <>
-            <Button
-                type="primary"
-                onClick = {() => {
-                    setVisible(true);
-                }}
-            >
-                New Issue
-            </Button>
-            <SubmitIssueForm 
-                visible={visible}
-                onCreate={onCreate}
-                onCancel={() => {
-                    setVisible(false);
-                }}
-            />
-        </>
-    );
-}
-
-export default NewIssue;
+export default SubmitIssueForm;

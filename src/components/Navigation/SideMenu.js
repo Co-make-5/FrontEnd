@@ -1,17 +1,43 @@
 import React, { useState } from 'react';
+// Redux
+import {connect} from 'react-redux'
+// Actions
+import {addIssue, fetchIssues} from '../../actions/actions'
+// Ant Design
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, CompassOutlined, BarChartOutlined, UserOutlined } from '@ant-design/icons';
+import { HomeOutlined, CompassOutlined, BarChartOutlined, UserOutlined, FileAddOutlined } from '@ant-design/icons';
+// React Router
 import { Link } from 'react-router-dom';
+// Components
+import SubmitIssueForm from '../Forms/NewIssue';
 
 const { Sider } = Layout;
 
-const SideMenu = () => {
+const SideMenu = (props) => {
     const [collapsed, setCollapsed] = useState(true);
+    const [visible, setVisible] = useState(false);
 
     const onCollapse = collapsed => {
         console.log(collapsed);
         setCollapsed(collapsed);
     };
+
+    let id = props.userID != "" ? props.userID : window.localStorage.getItem('userID')
+
+    const addTicket = values => {
+        console.log(values);
+        let issue = {
+            user_id: id, //required
+            issue_name: values.issue_name, //required
+            zip: values.zip, //required
+            description: values.description, //required
+            location: values.location //optional
+        }
+
+        props.addIssue(issue, id)
+        setVisible(!visible)
+        props.fetchIssues()
+    }
 
     return (
         <>
@@ -48,10 +74,21 @@ const SideMenu = () => {
                         <UserOutlined />
                         <Link to='/user'>Profile</Link>
                     </Menu.Item>
+                    <Menu.Item key="5" onClick={e => setVisible(!visible)}>
+                        <FileAddOutlined />
+                        <span>Add Issue</span>
+                    </Menu.Item>
                 </Menu>
             </Sider>
+            <SubmitIssueForm visible={visible} onCancel={e => setVisible(!visible)} onCreate={addTicket}/>
         </>
     );
 };
 
-export default SideMenu;
+const mapStateToProps = state => {
+    return {
+        userID: state.userID
+    }
+}
+
+export default connect(mapStateToProps, {addIssue, fetchIssues})(SideMenu);

@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // Redux Connect
 import {connect} from 'react-redux';
+// Actions
+import {fetchUserIssues} from '../../actions/actions'
 // Componenets
 import Tags from '../Accents/Tags'
 import IssueLikes from '../Accents/IssueLikes';
 // Ant Design
-import { List, Spin } from 'antd';
+import { List } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 
 const UserIssues = (props) => {
 
-    let data = props.issues;
+    const data = props.issues;
+
+    let id = window.localStorage.getItem('userID')
+
+    const results = data.filter(issue => issue.user_id == id)
+    // console.log(results)
+
+    // This has some weird bug I've yet to track down....
+    // useEffect(() => {
+    //   props.fetchUserIssues(parseInt(id))
+    // }, [])
+
+    const temp = () => {
+      return
+    }
 
 
     return (
@@ -18,10 +34,11 @@ const UserIssues = (props) => {
         <InfiniteScroll
           initialLoad={false}
           pageStart={0}
+          loadMore={temp}
           useWindow={false}
         >
           <List
-            dataSource={data}
+            dataSource={results}
             renderItem={item => (
               <List.Item key={item.id}>
                 <List.Item.Meta
@@ -42,8 +59,9 @@ const UserIssues = (props) => {
 
 const mapPropsToState = state => {
     return {
-        issues: state.issues
+        issues: state.issues,
+        userIssues: state.userIssues
     }
 }
 
-export default connect(mapPropsToState, {})(UserIssues)
+export default connect(mapPropsToState, {fetchUserIssues})(UserIssues)
