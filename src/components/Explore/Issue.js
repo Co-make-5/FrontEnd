@@ -28,7 +28,8 @@ const Issue = ({issue}) => {
         <div>
             <Badge count={likes}>
                 <Card
-                style={{height: '240px'}}
+                style={{ width: '280px', height: '240px'}}
+                // style={{height: '240px'}}
                     actions={[
                         // update onClicks here to increase or decrease upvotes when user clicks on corresponding button
                         <MinusCircleOutlined key="minus" onClick={e => updateLikes('dislike')} />,
@@ -37,8 +38,9 @@ const Issue = ({issue}) => {
                 >
                     <Card.Meta
                         title={issue.issue_name.length > 20 ? issue.issue_name.slice(0, 13) : issue.issue_name}
-                        description={issue.description}
+                        description={issue.location}
                     />
+                    <p style={{paddingTop: '30px', width: '200', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{issue.description}</p>
                     <Button onClick={showModal} style={{ display: "block", margin: "20px auto 0" }}>
                         View Details
                     </Button>

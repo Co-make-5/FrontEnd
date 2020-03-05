@@ -16,23 +16,16 @@ const AllIssues = props => {
   console.log(data);
 
   return (
-      <List
-        grid={{
-          gutter: 16,
-          xs: 1,
-          sm: 2,
-          md: 4,
-          lg: 4,
-          xl: 6,
-          xxl: 6
-        }}
-        dataSource={data}
-        renderItem={item => (
-          <List.Item>
-            <Issue issue={item} />
-          </List.Item>
-        )}
-      />
+    <List
+      grid={{ gutter: 10, xs: 1, sm: 2, md: 2, lg: 3, xl: 4, xxl: 5 }}
+      size="large"
+      dataSource={data}
+      renderItem={item => (
+        <List.Item style={{margin: '10px'}}>
+          <Issue issue={item} />
+        </List.Item>
+      )}
+    />
   );
 };
 

@@ -101,6 +101,7 @@ export const userSignIn = user => dispatch => {
 // Need to make into Promise, and clear all user data
 export const userSignOut = () => {
   localStorage.setItem("token", "");
+  localStorage.setItem("userID", "");
   return {
     type: LOGIN_USER,
     payload: ""
