@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Badge, Modal, Button } from "antd";
 import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import Tags from "../Accents/Tags";
 
 const Issue = ({ issue }) => {
   // count displays upvotes as badge on card
@@ -26,7 +27,7 @@ const Issue = ({ issue }) => {
     <div>
       <Badge count={likes}>
         <Card
-          style={{ width: "280px", height: "240px" }}
+          style={{ width: 300, height: "240px" }}
           actions={[
             // update onClicks here to increase or decrease upvotes when user clicks on corresponding button
             <MinusCircleOutlined
@@ -42,11 +43,20 @@ const Issue = ({ issue }) => {
                 ? issue.issue_name.slice(0, 13)
                 : issue.issue_name
             }
-            description={`Location: ${issue.location !== "" ? issue.location : issue.zip}`}
+            // description={`Location: ${issue.location !== "" ? issue.location : issue.zip}`}
+            description={<Tags solved={issue.solved} />}
           />
+          {/* <p style={{padding: "8px 0 0"}}>Status: <Tags solved={issue.solved} /></p> */}
+          <p style={{ 
+            color: "#8c8c8c",
+            paddingTop: "20px",
+            marginBottom: "4px"
+            }}>
+              {`Location: ${issue.location !== "" ? issue.location : issue.zip}`}
+          </p>
           <p
             style={{
-              paddingTop: "30px",
+              // paddingTop: "-20px",
               width: "200",
               whiteSpace: "nowrap",
               overflow: "hidden",
@@ -62,7 +72,7 @@ const Issue = ({ issue }) => {
             View Details
           </Button>
           <Modal
-            title="Fix pothole on 10th Street"
+            title={issue.issue_name}
             visible={visible}
             onCancel={handleCancel}
             footer={[
