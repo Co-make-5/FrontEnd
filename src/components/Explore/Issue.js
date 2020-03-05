@@ -64,7 +64,9 @@ const Issue = ({ issue }) => {
                 ? issue.issue_name.slice(0, 13)
                 : issue.issue_name
             }
+
             description={<Tags solved={issue.solved} />}
+
           />
           <p style={{ 
             color: "#8c8c8c",
