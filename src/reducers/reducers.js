@@ -7,6 +7,8 @@ import {
   LOGGING_IN,
   // Setting of UserID
   SET_USER_ID,
+  // Editing issue fix
+  CURRENT_ISSUE,
   // Signup User
   SIGNUP_USER,
   SIGNUP_USER_ERROR,
@@ -53,7 +55,8 @@ const initialState = {
   editingIssue: false,
   deletingIssue: false,
   issues: [],
-  userIssues: []
+  userIssues: [],
+  currentIssue: {}
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -63,6 +66,11 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         testing: action.payload
       };
+    case CURRENT_ISSUE:
+      return {
+        ...state, 
+        currentIssue: action.payload
+      }
     case LOGIN_USER:
       return {
         ...state,

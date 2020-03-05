@@ -4,7 +4,7 @@ import { ResponsiveLine } from '@nivo/line'
 const data = [
     {
       "id": "solved",
-      "color": "hsl(300, 70%, 50%)",
+      "color": "#87d068",
       "data": [
         {
           "x": "03/01/2020",
@@ -34,7 +34,7 @@ const data = [
     },
     {
       "id": "open",
-      "color": "hsl(48, 70%, 50%)",
+      "color": "#108ee9",
       "data": [
         {
           "x": "03/01/2020",
@@ -68,6 +68,7 @@ const LineChart = (props) => (
     <ResponsiveLine
         data={data}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        curve="cardinal"
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
         axisTop={null}
@@ -90,11 +91,12 @@ const LineChart = (props) => (
             legendOffset: -40,
             legendPosition: 'middle'
         }}
-        colors={{ scheme: 'nivo' }}
+        // colors={{ scheme: 'accent' }}
+        colors={['#87d068', '#108ee9']}
+        areaBlendMode="darken"
         pointSize={10}
-        pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
-        pointBorderColor={{ from: 'serieColor' }}
+        pointColor={{from: 'color'}}
         pointLabel="y"
         pointLabelYOffset={-12}
         useMesh={true}

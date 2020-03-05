@@ -33,6 +33,7 @@ const Issue = ({ issue }) => {
     axiosWithAuth()
       .get(`https://comake-backend.herokuapp.com/api/users/${id}`)
       .then(response => {
+        console.log(response)
         // console.log("Response, User Name:", response.data[0]["name"])
         setName(response["data"][0]["name"]);
       })

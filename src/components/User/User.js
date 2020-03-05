@@ -9,6 +9,7 @@ import { Row, Col } from "antd";
 import UserIssues from "./UserIssues";
 import PieChart from "../Accents/PieChart";
 import LineChart from "../Accents/LineChart";
+import UserAnalytics from "./UserAnalytics";
 
 const User = props => {
   useEffect(() => {
@@ -18,11 +19,8 @@ const User = props => {
   return (
     <>
       <h5 style={{ textAlign: "center" }}>Your Issue's</h5>
-      <UserIssues />
-      <Row>
-        <Col span={12} style={{height: '40vh'}}><PieChart/></Col>
-        <Col span={12} style={{height: '40vh'}}><LineChart/></Col>
-      </Row>
+      <UserIssues/>
+      <UserAnalytics/>
     </>
   );
 };

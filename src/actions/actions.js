@@ -30,6 +30,8 @@ export const EDIT_ISSUE_ERROR = "UPVOTE_ISSUE_ERROR";
 // Deletion of a issue
 export const DELETE_ISSUE = "DELETE_ISSUE";
 export const DELETE_ISSUE_ERROR = "DELETE_ISSUE_ERROR";
+// Solution for storing currently editing issue
+export const CURRENT_ISSUE = "CURRENT_ISSUE";
 // Fethching and Loading status for various actions
 export const LOGGING_IN = "LOGGING_IN";
 export const SIGNING_UP = "SIGNING_UP";
@@ -51,6 +53,13 @@ export const testing = () => {
     payload: "Testing payload"
   };
 };
+
+// Gross
+export const currentIssue = issue => {
+  return dispatch => {
+    dispatch({ type: CURRENT_ISSUE, payload: issue})
+  }
+}
 
 // User Signup Method
 export const userSignUp = user => dispatch => {
