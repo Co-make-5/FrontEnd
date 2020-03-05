@@ -99,7 +99,8 @@ const Issue = ({ issue }) => {
               </Button>
             ]}
           >
-            <p>Community: {issue.zip}</p>
+            <p><Tags solved={issue.solved} /></p>
+            <p>Location: {issue.zip}</p>
             <p>{issue.description}</p>
             <p>Submitted by: {name !== null ? name : "Anonymous"}</p>
           </Modal>
