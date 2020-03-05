@@ -204,7 +204,7 @@ export const editIssue = (id, issue) => {
 
 // Editing of a issue
 export const deleteIssue = id => {
-  const promise = axiosWithAuth().delete(API + "issue/" + id);
+  const promise = axiosWithAuth().delete(API + "issues/" + id);
 
   return dispatch => {
     dispatch({ type: DELETING_ISSUE });

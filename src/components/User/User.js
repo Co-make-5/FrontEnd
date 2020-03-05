@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 // Redux Connect
 import {connect} from 'react-redux';
 // Actions
-import {fetchIssues} from '../../actions/actions';
+import {fetchIssues, deleteIssue, editIssue} from '../../actions/actions';
 // Components
 import UserIssues from './UserIssues';
 
@@ -27,4 +27,4 @@ const mapPropsToState = state => {
     }
 }
 
-export default connect(mapPropsToState, {fetchIssues})(User)
+export default connect(mapPropsToState, {fetchIssues, deleteIssue, editIssue})(User)
