@@ -18,11 +18,18 @@ const AllIssues = props => {
   return (
     <List
       grid={{ gutter: 10, xs: 1, sm: 2, md: 2, lg: 3, xl: 4, xxl: 5 }}
-      size="large"
       dataSource={data}
+      pagination={{
+        onChange: page => {
+          console.log(page);
+        },
+        pageSize: 18,
+        style: {textAlign: 'center'},
+        hideOnSinglePage: true
+      }}
       renderItem={item => (
         <List.Item style={{margin: '10px'}}>
-          <Issue issue={item} />
+          <Issue issue={item} key={item.id}/>
         </List.Item>
       )}
     />

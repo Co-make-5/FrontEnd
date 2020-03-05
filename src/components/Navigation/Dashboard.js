@@ -38,6 +38,7 @@ const Dashboard = props => {
               type="primary"
               ghost
               style={{ width: "105px" }}
+              key="logout"
             >
               <Row align="middle" justify="space-between">
                 Log Out

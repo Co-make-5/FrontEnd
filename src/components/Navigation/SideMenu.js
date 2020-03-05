@@ -22,7 +22,7 @@ const SideMenu = (props) => {
         setCollapsed(collapsed);
     };
 
-    let id = props.userID != "" ? props.userID : window.localStorage.getItem('userID')
+    let id = props.userID !== "" ? props.userID : window.localStorage.getItem('userID')
 
     const addTicket = values => {
         console.log(values);

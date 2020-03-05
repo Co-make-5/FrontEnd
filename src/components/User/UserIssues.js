@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 // Redux Connect
 import {connect} from 'react-redux';
 // Actions
@@ -17,12 +17,7 @@ const UserIssues = (props) => {
     let id = window.localStorage.getItem('userID')
 
     const results = data.filter(issue => issue.user_id == id)
-    // console.log(results)
 
-    // This has some weird bug I've yet to track down....
-    // useEffect(() => {
-    //   props.fetchUserIssues(parseInt(id))
-    // }, [])
 
     const temp = () => {
       return

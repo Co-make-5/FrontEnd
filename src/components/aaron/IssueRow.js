@@ -1,6 +1,6 @@
 import React from 'react';
 // Ant Design
-import { List, Avatar, Skeleton } from 'antd';
+import { List } from 'antd';
 
 const IssueRow = (props) => {
 
@@ -9,7 +9,6 @@ const IssueRow = (props) => {
     return (
         <List.Item
             key={item.id}
-            actions={[<a key="list-loadmore-more"></a>]}
           >
                 <List.Item.Meta
                 avatar={<div></div>}

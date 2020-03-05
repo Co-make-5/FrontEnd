@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 // Actions
 import {fetchIssues} from '../../actions/actions';
 // Components
-import IssueList from '../aaron/IssueList'
 import UserIssues from './UserIssues';
 
 const User = (props) => {
