@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Badge, Modal, Button } from "antd";
-import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import Tags from "../Accents/Tags";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
@@ -36,7 +36,7 @@ const Issue = ({ issue }) => {
       setName(response["data"][0]["name"])
     })
     .catch(err => console.log("Error getting user info:", err))
-  }, [id])
+  }, [])
 
 
   return (
@@ -46,11 +46,16 @@ const Issue = ({ issue }) => {
           style={{ width: 300, height: "240px" }}
           actions={[
             // update onClicks here to increase or decrease upvotes when user clicks on corresponding button
-            <MinusCircleOutlined
+            <DislikeOutlined
+              style={{fontSize: "20px", color: "#ff4d4f"}}
               key="minus"
               onClick={e => updateLikes("dislike")}
             />,
-            <PlusCircleOutlined key="plus" onClick={e => updateLikes("like")} />
+            <LikeOutlined
+              style={{fontSize: "20px", color: "#52c41a"}} 
+              key="plus" 
+              onClick={e => updateLikes("like")} 
+            />
           ]}
         >
           <Card.Meta
