@@ -20,6 +20,17 @@ const Dashboard = (props) => {
     }
     
     return (
+
+        // <div style={{backgroundColor: '#333', minHeight: '100vh', textAlign: 'center'}}>
+        //     <Layout style={{ minHeight: '100vh' }}>
+        //         <SideMenu/>
+        //         <Layout>
+        //             {/* Dynamic rendering of different componenets depending on NavBar */}
+        //             {Page}
+        //             <Footer style={{ textAlign: 'center' }}>Co-Make 2020</Footer>
+        //         </Layout>
+        //     </Layout>
+        // </div>
         <Layout>
             <Header
                 style={{ 

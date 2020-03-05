@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import {connect} from 'react-redux';
 // Actions
 import {fetchIssues} from '../../actions/actions';
-import { Row, List } from 'antd';
+import { Row, List, Layout } from 'antd';
 import Issue from '../Explore/Issue';
 
 const AllIssues = (props) => {
@@ -16,8 +16,9 @@ const AllIssues = (props) => {
 
     console.log(data)
 
+    const { Content } = Layout;
+
     return (
-        <>
             <List
                 grid={{
                 gutter: 16,
@@ -35,7 +36,6 @@ const AllIssues = (props) => {
                 </List.Item>
                 )}
             />
-        </>
     )
 }
 
