@@ -1,78 +1,67 @@
-import React from 'react';
+import React from "react";
 // Redux
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 // Actions
-import {userSignOut} from '../../actions/actions'
+import { userSignOut } from "../../actions/actions";
 // Ant Design
-import { Layout, Row, Col, Button } from 'antd';
-import { LogoutOutlined } from '@ant-design/icons';
+import { Layout, Row, Button, PageHeader } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
 // Components
-import SideMenu from './SideMenu';
+import SideMenu from "./SideMenu";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
-const Dashboard = (props) => {
+const Dashboard = props => {
+  let Page = props.page;
 
-    let Page = props.page
+  const bye = () => {
+    props.userSignOut();
+    props.data("/");
+  };
 
-    const bye = () => {
-        props.data('/')
-    }
-    
-    return (
-
-        // <div style={{backgroundColor: '#333', minHeight: '100vh', textAlign: 'center'}}>
-        //     <Layout style={{ minHeight: '100vh' }}>
-        //         <SideMenu/>
-        //         <Layout>
-        //             {/* Dynamic rendering of different componenets depending on NavBar */}
-        //             {Page}
-        //             <Footer style={{ textAlign: 'center' }}>Co-Make 2020</Footer>
-        //         </Layout>
-        //     </Layout>
-        // </div>
-        <Layout>
-            <Header
-                style={{ 
-                    backgroundColor: "white", 
-                    borderBottom: "1px solid #f5f5f5", 
-                    textAlign: "left",
-                    position: "fixed",
-                    width: "100%"
-                }}
+  return (
+    <Layout>
+      <SideMenu bye={bye}/>
+      <Layout>
+        {/* Page wrapper with nice background */}
+        <PageHeader
+          style={{
+            backgroundColor: "white",
+            borderBottom: "1px solid #f5f5f5",
+            textAlign: "left"
+          }}
+          title="Co-Make"
+          subTitle="Better your community here!"
+          extra={[
+            <Button
+              onClick={bye}
+              type="primary"
+              ghost
+              style={{ width: "105px" }}
+              key="logout"
             >
-                <Row align="middle" justify="space-between">
-                    <Col>
-                        <h1>Co-Make</h1>
-                    </Col>
-                    <Col>
-                        <Button onClick={bye} type="primary" ghost style={{width: "105px", marginBottom: '30px'}}>
-                            <Row align="middle" justify="space-between">
-                                Log Out
-                                <LogoutOutlined />
-                            </Row>
-                        </Button>
-                    </Col>
-                </Row>
-            </Header>
-            <Layout style={{ marginTop: "64px" }}>
-                <SideMenu />
-                <Layout style={{ marginLeft: 80, minHeight: "90vh" }}>
-                    <Content
-                        style={{
-                            margin: "24px 16px 0",
-                            overflow: "initial",
-                            padding: 24,
-                            backgroundColor: "white"
-                        }}
-                    >
-                        {Page}
-                    </Content>
-                    <Footer style={{textAlign: "center"}}>&copy; Co-Make 2020</Footer>
-                </Layout>
-            </Layout>
-        </Layout>
-    );
+              <Row align="middle" justify="space-between">
+                Log Out
+                <LogoutOutlined />
+              </Row>
+            </Button>
+          ]}
+        />
+        <Content
+          style={{
+            margin: "24px 16px 0",
+            overflow: "initial",
+            padding: 24,
+            backgroundColor: "white",
+            minHeight: "80vh"
+          }}
+        >
+          {Page}
+        </Content>
+        <Footer style={{ textAlign: "center" }}>&copy; Co-Make 2020</Footer>
+      </Layout>
+    </Layout>
+  );
 };
 
-export default Dashboard;
+export default connect(null, { userSignOut })(Dashboard);

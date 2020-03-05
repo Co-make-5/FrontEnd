@@ -14,12 +14,17 @@ import Explore from './Pages/Explore';
 import AllIssues from './Explore/AllIssues';
 // Sidemenu && Dashboard
 import Dashboard from './Navigation/Dashboard'
+// Testing
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 const App = props => 
 {
 
   useEffect(() => 
   {
+    axiosWithAuth().get('https://comake-backend.herokuapp.com/api/users')
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
     // props.userSignIn(testSignupUser)
     // .then(res => console.log(res))
     // .catch(err => console.log("ERR:", err))

@@ -9,6 +9,7 @@ const signIn = (cb, user) => {
           resolve(true);
         }, 1000)})
       .catch((err) => {
+        reject();
       })
     })
   }

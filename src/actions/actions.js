@@ -101,6 +101,7 @@ export const userSignIn = user => dispatch => {
 // Need to make into Promise, and clear all user data
 export const userSignOut = () => {
   localStorage.setItem("token", "");
+  localStorage.setItem("userID", "");
   return {
     type: LOGIN_USER,
     payload: ""
@@ -203,7 +204,7 @@ export const editIssue = (id, issue) => {
 
 // Editing of a issue
 export const deleteIssue = id => {
-  const promise = axiosWithAuth().delete(API + "issue/" + id);
+  const promise = axiosWithAuth().delete(API + "issues/" + id);
 
   return dispatch => {
     dispatch({ type: DELETING_ISSUE });

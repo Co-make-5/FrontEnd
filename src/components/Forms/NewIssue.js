@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Modal, Form, Input } from "antd";
+import React from "react";
+import { Modal, Form, Input } from "antd";
 
 const SubmitIssueForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
