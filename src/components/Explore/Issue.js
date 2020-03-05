@@ -44,7 +44,7 @@ const Issue = ({ issue }) => {
     <div>
       <Badge count={likes}>
         <Card
-          style={{ width: 300, height: "240px" }}
+          style={{ width: 400, height: "240px" }}
           actions={[
             // update onClicks here to increase or decrease upvotes when user clicks on corresponding button
             <DislikeOutlined

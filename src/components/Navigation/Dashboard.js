@@ -22,7 +22,7 @@ const Dashboard = props => {
   return (
     <Layout>
       <SideMenu bye={bye}/>
-      <Layout>
+      <Layout style={{backgroundColor: '#333'}}>
         {/* Page wrapper with nice background */}
         <PageHeader
           style={{
@@ -52,13 +52,14 @@ const Dashboard = props => {
             margin: "24px 16px 0",
             overflow: "initial",
             padding: 24,
-            backgroundColor: "white",
-            minHeight: "80vh"
+            backgroundColor: "rgba(255, 255, 255, .7)",
+            minHeight: "80vh",
+            borderRadius: '8px'
           }}
         >
           {Page}
         </Content>
-        <Footer style={{ textAlign: "center" }}>&copy; Co-Make 2020</Footer>
+        <Footer style={{ textAlign: "center", backgroundColor: '#333', color: 'white' }}>&copy; Co-Make 2020</Footer>
       </Layout>
     </Layout>
   );

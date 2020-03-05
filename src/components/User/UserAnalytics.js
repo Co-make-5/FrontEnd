@@ -9,7 +9,6 @@ import LineChart from "../Accents/LineChart";
 
 const UserAnalytics = props => {
   const data = props.issues;
-  console.log(data);
 
   const id = window.localStorage.getItem("userID");
 
