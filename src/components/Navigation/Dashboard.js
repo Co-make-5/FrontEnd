@@ -4,23 +4,24 @@ import { connect } from "react-redux";
 // Actions
 import { userSignOut } from "../../actions/actions";
 // Ant Design
-import { Layout, Row, Col, Button, PageHeader } from "antd";
+import { Layout, Row, Button, PageHeader } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 // Components
 import SideMenu from "./SideMenu";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const Dashboard = props => {
   let Page = props.page;
 
   const bye = () => {
+    props.userSignOut();
     props.data("/");
   };
 
   return (
     <Layout>
-      <SideMenu />
+      <SideMenu bye={bye}/>
       <Layout>
         {/* Page wrapper with nice background */}
         <PageHeader
@@ -59,8 +60,7 @@ const Dashboard = props => {
         <Footer style={{ textAlign: "center" }}>&copy; Co-Make 2020</Footer>
       </Layout>
     </Layout>
-    // </Layout>
   );
 };
 
-export default Dashboard;
+export default connect(null, { userSignOut })(Dashboard);

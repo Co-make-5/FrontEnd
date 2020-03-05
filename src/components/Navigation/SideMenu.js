@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {addIssue, fetchIssues} from '../../actions/actions'
 // Ant Design
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, CompassOutlined, BarChartOutlined, UserOutlined, FileAddOutlined } from '@ant-design/icons';
+import { LogoutOutlined, HomeOutlined, CompassOutlined, BarChartOutlined, UserOutlined, FileAddOutlined } from '@ant-design/icons';
 // React Router
 import { Link } from 'react-router-dom';
 // Components
@@ -81,6 +81,10 @@ const SideMenu = (props) => {
                     <Menu.Item key="5" onClick={e => setVisible(!visible)}>
                         <FileAddOutlined />
                         <span>Add Issue</span>
+                    </Menu.Item>
+                    <Menu.Item key="6" onClick={e => props.bye()}>
+                        <LogoutOutlined />
+                        <span>Logout</span>
                     </Menu.Item>
                 </Menu>
             </Sider>
