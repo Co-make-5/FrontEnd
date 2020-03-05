@@ -7,8 +7,6 @@ import { fetchIssues, deleteIssue, editIssue } from "../../actions/actions";
 import { Row, Col } from "antd";
 // Components
 import UserIssues from "./UserIssues";
-import PieChart from "../Accents/PieChart";
-import LineChart from "../Accents/LineChart";
 import UserAnalytics from "./UserAnalytics";
 
 const User = props => {
