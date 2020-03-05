@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Badge, Modal, Button } from "antd";
 import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import Tags from "../Accents/Tags";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const Issue = ({ issue }) => {
   // count displays upvotes as badge on card
@@ -23,6 +24,21 @@ const Issue = ({ issue }) => {
 
   // 150 is the current size
 
+  // Set's state for user's name & id
+  const [name, setName] = useState("");
+  const [id] = useState(issue.user_id);
+
+  // Axios Call to Get User's Name in Modal
+  useEffect(() => {
+    axiosWithAuth().get(`https://comake-backend.herokuapp.com/api/users/${id}`)
+    .then(response => {
+      // console.log("Response, User Name:", response.data[0]["name"])
+      setName(response["data"][0]["name"])
+    })
+    .catch(err => console.log("Error getting user info:", err))
+  }, [id])
+
+
   return (
     <div>
       <Badge count={likes}>
@@ -43,10 +59,8 @@ const Issue = ({ issue }) => {
                 ? issue.issue_name.slice(0, 13)
                 : issue.issue_name
             }
-            // description={`Location: ${issue.location !== "" ? issue.location : issue.zip}`}
             description={<Tags solved={issue.solved} />}
           />
-          {/* <p style={{padding: "8px 0 0"}}>Status: <Tags solved={issue.solved} /></p> */}
           <p style={{ 
             color: "#8c8c8c",
             paddingTop: "20px",
@@ -56,7 +70,6 @@ const Issue = ({ issue }) => {
           </p>
           <p
             style={{
-              // paddingTop: "-20px",
               width: "200",
               whiteSpace: "nowrap",
               overflow: "hidden",
@@ -83,7 +96,7 @@ const Issue = ({ issue }) => {
           >
             <p>Community: {issue.zip}</p>
             <p>{issue.description}</p>
-            <p>Submitted by: {issue.user_id}</p>
+            <p>Submitted by: {name !== null ? name : "Anonymous"}</p>
           </Modal>
         </Card>
       </Badge>
