@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 // Styles
 import './styles/index.css';
 import './styles/App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
 // App Component
 import App from './components/App';
