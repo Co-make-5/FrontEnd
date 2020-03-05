@@ -46,13 +46,6 @@ const SideMenu = (props) => {
                 collapsed={collapsed} 
                 onCollapse={onCollapse} 
                 theme="light"
-                style={{
-                    height: "90vh",
-                    position: "fixed",
-                    left: 0,
-                    borderRight: "1px solid #f5f5f5",
-                    zIndex: "1000"
-                }}
             >
                 <Menu defaultSelectedKeys={["1"]} mode="inline">
 

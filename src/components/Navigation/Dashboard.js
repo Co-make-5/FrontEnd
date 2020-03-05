@@ -20,6 +20,17 @@ const Dashboard = (props) => {
     }
     
     return (
+
+        // <div style={{backgroundColor: '#333', minHeight: '100vh', textAlign: 'center'}}>
+        //     <Layout style={{ minHeight: '100vh' }}>
+        //         <SideMenu/>
+        //         <Layout>
+        //             {/* Dynamic rendering of different componenets depending on NavBar */}
+        //             {Page}
+        //             <Footer style={{ textAlign: 'center' }}>Co-Make 2020</Footer>
+        //         </Layout>
+        //     </Layout>
+        // </div>
         <Layout>
             <Header
                 style={{ 
@@ -35,7 +46,7 @@ const Dashboard = (props) => {
                         <h1>Co-Make</h1>
                     </Col>
                     <Col>
-                        <Button onClick={bye} type="primary" ghost style={{width: "105px"}}>
+                        <Button onClick={bye} type="primary" ghost style={{width: "105px", marginBottom: '30px'}}>
                             <Row align="middle" justify="space-between">
                                 Log Out
                                 <LogoutOutlined />
