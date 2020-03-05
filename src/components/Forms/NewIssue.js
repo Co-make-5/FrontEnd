@@ -56,7 +56,7 @@ const SubmitIssueForm = ({ visible, onCreate, onCancel }) => {
                 <Form.Item
                     name="location"
                     label="City"
-                    rules= {[{ required: false, whitespace: true, message: "Optional City name"}]}
+                    rules= {[{ required: true, whitespace: true, message: "Optional City name"}]}
                 >
                     <Input type="textarea" />
                 </Form.Item>

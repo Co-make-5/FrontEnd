@@ -30,14 +30,14 @@ const Issue = ({ issue }) => {
 
   // Axios Call to Get User's Name in Modal
   useEffect(() => {
-    axiosWithAuth().get(`https://comake-backend.herokuapp.com/api/users/${id}`)
-    .then(response => {
-      // console.log("Response, User Name:", response.data[0]["name"])
-      setName(response["data"][0]["name"])
-    })
-    .catch(err => console.log("Error getting user info:", err))
-  }, [])
-
+    axiosWithAuth()
+      .get(`https://comake-backend.herokuapp.com/api/users/${id}`)
+      .then(response => {
+        // console.log("Response, User Name:", response.data[0]["name"])
+        setName(response["data"][0]["name"]);
+      })
+      .catch(err => console.log("Error getting user info:", err));
+  }, []);
 
   return (
     <div>
@@ -47,14 +47,14 @@ const Issue = ({ issue }) => {
           actions={[
             // update onClicks here to increase or decrease upvotes when user clicks on corresponding button
             <DislikeOutlined
-              style={{fontSize: "20px", color: "#ff4d4f"}}
+              style={{ fontSize: "20px", color: "#ff4d4f" }}
               key="minus"
               onClick={e => updateLikes("dislike")}
             />,
             <LikeOutlined
-              style={{fontSize: "20px", color: "#52c41a"}} 
-              key="plus" 
-              onClick={e => updateLikes("like")} 
+              style={{ fontSize: "20px", color: "#52c41a" }}
+              key="plus"
+              onClick={e => updateLikes("like")}
             />
           ]}
         >
@@ -64,16 +64,18 @@ const Issue = ({ issue }) => {
                 ? issue.issue_name.slice(0, 13)
                 : issue.issue_name
             }
-
             description={<Tags solved={issue.solved} />}
-
           />
-          <p style={{ 
-            color: "#8c8c8c",
-            paddingTop: "20px",
-            marginBottom: "4px"
-            }}>
-              {`Location: ${issue.location !== "" ? issue.location : issue.zip}`}
+          <p
+            style={{
+              color: "#8c8c8c",
+              paddingTop: "20px",
+              marginBottom: "4px"
+            }}
+          >
+            {`Location: ${
+              issue.location !== null ? issue.location : issue.zip
+            }`}
           </p>
           <p
             style={{
@@ -101,7 +103,9 @@ const Issue = ({ issue }) => {
               </Button>
             ]}
           >
-            <p><Tags solved={issue.solved} /></p>
+            <p>
+              <Tags solved={issue.solved} />
+            </p>
             <p>Location: {issue.zip}</p>
             <p>{issue.description}</p>
             <p>Submitted by: {name !== null ? name : "Anonymous"}</p>
