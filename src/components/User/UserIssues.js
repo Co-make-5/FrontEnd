@@ -47,14 +47,6 @@ const UserIssues = props => {
           renderItem={item => (
             <List.Item
               key={item.id}
-              actions={[
-                <IconText
-                  icon={LikeOutlined}
-                  text={item.upvotes}
-                  key="list-vertical-like-o"
-                />,
-                <IconText icon={DislikeOutlined} key="list-vertical-like-o" />
-              ]}
               extra={[
                 <Button key="edit" style={{marginRight: '10px'}}>Edit</Button>,
                 <Button key="delete" onClick={e => deleteTicket(item.id)}>Delete</Button>
@@ -63,7 +55,7 @@ const UserIssues = props => {
             >
               <List.Item.Meta
                 title={item.issue_name}
-                description={'Location: ' + item.location}
+                description={`Location: ${item.location !== null ? item.location : item.zip}`}
               />
               <p>{'Description: ' + item.description}</p>
               <p>Status: <Tags solved={item.solved} /></p>

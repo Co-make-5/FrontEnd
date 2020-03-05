@@ -32,7 +32,10 @@ const Signup = (props) => {
         // Passes value object into useSignUp
         tempSignupUser = {
             username: values.username,
-            password: values.password
+            password: values.password,
+            name: values.name,
+            location: values.location,
+            zip: values.zipcode
         }
         props.userSignUp(tempSignupUser)
         .then(() => {
@@ -84,6 +87,17 @@ const Signup = (props) => {
                 ]}
             >
                 <Input.Password />
+            </Form.Item>
+
+            {/* CITY */}
+            <Form.Item
+                name="location"
+                label="City"
+                rules={[
+                    { required: true, message: "You city is required to sign up" },
+                ]}
+            >
+                <Input />
             </Form.Item>
 
             {/* ZIP CODE <-- add more validation to ensure entering 5 digit zip code here */}

@@ -1,11 +1,13 @@
 import React from 'react';
+import PieChart from '../Accents/PieChart';
 
 const Explore = (props) => {
 
     return (
-        <>
-            <h1>Explore Page</h1>
-        </>
+        <div style={{height: '80vh'}}>
+            
+            <PieChart/>
+        </div>
     )
 }
 

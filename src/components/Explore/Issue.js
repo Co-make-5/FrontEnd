@@ -42,7 +42,7 @@ const Issue = ({ issue }) => {
                 ? issue.issue_name.slice(0, 13)
                 : issue.issue_name
             }
-            description={`Location: ${issue.location !== "" ? issue.location : issue.zip}`}
+            description={`Location: ${issue.location !== null ? issue.location : issue.zip}`}
           />
           <p
             style={{
