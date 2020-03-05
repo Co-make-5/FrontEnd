@@ -7,7 +7,6 @@ import {fetchIssues, deleteIssue, editIssue} from "../../actions/actions";
 import Tags from "../Accents/Tags";
 // Ant Design
 import { List, Button } from "antd";
-import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroller";
 
 const UserIssues = props => {
