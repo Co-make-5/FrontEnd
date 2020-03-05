@@ -8,10 +8,10 @@ import {PrivateRoute} from '../utils/PrivateRoute';
 import {userSignUp, userSignIn, fetchIssues} from '../actions/actions';
 // Components
 import Landing from './Pages/Landing';
-import Signup from './Forms/Signup';
 import User from './User/User';
-import Analytics from './aaron/Analytics';
-import Explore from './aaron/Explore';
+import Analytics from './Pages/Analytics';
+import Explore from './Pages/Explore';
+import AllIssues from './Explore/AllIssues';
 // Sidemenu && Dashboard
 import Dashboard from './Navigation/Dashboard'
 
@@ -35,7 +35,7 @@ const App = props =>
     <div className="App">
       <Route exact path="/"><Landing login={true} push={historyPush}/></Route>
       <Route path="/signup"><Landing login={false} push={historyPush}/></Route>
-      <PrivateRoute exact path="/home" component={Dashboard} data={historyPush} page={<Signup/>}/>
+      <PrivateRoute exact path="/home" component={Dashboard} data={historyPush} page={<AllIssues/>}/>
       <PrivateRoute exact path="/explore" component={Dashboard} data={historyPush} page={<Explore/>}/>
       <PrivateRoute exact path="/analytics" component={Dashboard} data={historyPush} page={<Analytics/>}/>
       <PrivateRoute exact path="/user" component={Dashboard} data={historyPush} page={<User/>}/>
@@ -49,22 +49,5 @@ const mapStateToProps = state =>
     issues: state.issues
   };
 };
-
-// Redux Connect
-// import {connect} from 'react-redux';
-
-// useEffect(() => 
-// {
-//   props.fetchIssues();
-// }, [])
-
-// const mapStateToProps = state => 
-// {
-//   return {
-//     issues: state.issues
-//   };
-// };
-
-// export default connect(mapStateToProps, {})(<NAME>))
 
 export default withRouter(connect(mapStateToProps, {userSignUp, userSignIn, fetchIssues})(App))

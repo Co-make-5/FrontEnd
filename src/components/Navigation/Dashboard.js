@@ -35,7 +35,7 @@ const Dashboard = (props) => {
                         <h1>Co-Make</h1>
                     </Col>
                     <Col>
-                        <Button onClick={bye} type="primary" ghost style={{width: "105px"}}>
+                        <Button onClick={bye} type="primary" ghost style={{width: "105px", marginBottom: '30px'}}>
                             <Row align="middle" justify="space-between">
                                 Log Out
                                 <LogoutOutlined />

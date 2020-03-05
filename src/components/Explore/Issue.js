@@ -3,34 +3,41 @@ import { Card, Badge, Modal, Button } from 'antd';
 import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
 
-const Issue = (props) => {
+const Issue = ({issue}) => {
     // count displays upvotes as badge on card
-    let count = 3;
+    const [likes, setLikes] = useState(0);
     //state for modal
     const [visible, setVisible] = useState(false);
     // opens modal
-    let showModal = () => {
+    const showModal = () => {
         setVisible(true);
     };
     // closes modal
-    let handleCancel = e => {
+    const handleCancel = e => {
         setVisible(false);
     };
 
+    const updateLikes = type => {
+        type === 'like' ? setLikes(likes + 1) : setLikes(likes - 1)
+
+    }
+
+    // 150 is the current size
+
     return (
-        <div style={{marginBottom: "32px", width: "30%"}}>
-            <Badge count={count}>
+        <div>
+            <Badge count={likes}>
                 <Card
+                style={{height: '240px'}}
                     actions={[
                         // update onClicks here to increase or decrease upvotes when user clicks on corresponding button
-                        <MinusCircleOutlined key="minus" onClick={showModal} />,
-                        <PlusCircleOutlined key="plus" onClick={showModal} />
+                        <MinusCircleOutlined key="minus" onClick={e => updateLikes('dislike')} />,
+                        <PlusCircleOutlined key="plus" onClick={e => updateLikes('like')} />
                     ]}
                 >
-                    <Card.Meta 
-                        style={{ height: "100px", overflow: "hidden"}}
-                        title="Fix pothole on 10th Street"
-                        description="There's a huge pothole at 10th &amp; Jefferson that's causing unsafe driving conditions. This needs to be filled immediately. Lives are at stake here." 
+                    <Card.Meta
+                        title={issue.issue_name.length > 20 ? issue.issue_name.slice(0, 13) : issue.issue_name}
+                        description={issue.description}
                     />
                     <Button onClick={showModal} style={{ display: "block", margin: "20px auto 0" }}>
                         View Details

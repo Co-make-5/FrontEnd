@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom';
 // Ant Design
 import { Layout } from 'antd';
 // Components
-import SideMenu from './SideMenu';
+import SideMenu from '../aaron/SideMenu';
 
 const { Footer } = Layout;
 
