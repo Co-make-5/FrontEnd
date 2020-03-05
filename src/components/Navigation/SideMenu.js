@@ -50,23 +50,33 @@ const SideMenu = (props) => {
                 <Menu defaultSelectedKeys={["1"]} mode="inline">
 
                     <Menu.Item key="1">
-                        <HomeOutlined />
-                        <Link to='/home'>Home</Link>
+                        <Link to='/home'>
+                            <HomeOutlined />
+                            <span>Home</span>
+                        </Link>
                     </Menu.Item>
 
                     <Menu.Item key="2">
-                        <CompassOutlined />
-                        <Link to='/explore'>Explore</Link>
+                        <Link to='/explore'>
+                            <CompassOutlined />
+                            <span>Explore</span>
+                        </Link>
                     </Menu.Item>
 
+                    
                     <Menu.Item key="3">
-                        <BarChartOutlined />
-                        <Link to='/analytics'>Analytics</Link>
+                        <Link to='/analytics'>
+                            <BarChartOutlined />
+                            <span>Analytics</span>
+                        </Link>
                     </Menu.Item>
+                    
 
                     <Menu.Item key="4">
-                        <UserOutlined />
-                        <Link to='/user'>Profile</Link>
+                        <Link to='/user'>
+                            <UserOutlined />
+                            <span>Profile</span>
+                        </Link>
                     </Menu.Item>
                     <Menu.Item key="5" onClick={e => setVisible(!visible)}>
                         <FileAddOutlined />
