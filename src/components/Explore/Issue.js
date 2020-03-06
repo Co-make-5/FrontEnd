@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
+// Ant Design
 import { Card, Badge, Modal, Button } from "antd";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+// Redux
+import {connect} from 'react-redux';
+// Actions
+import {editIssue} from '../../actions/actions';
+// Components
 import Tags from "../Accents/Tags";
+// Axios With Auth
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-const Issue = ({ issue }) => {
+const Issue = ({ issue, editIssue }) => {
   // count displays upvotes as badge on card
-  const [likes, setLikes] = useState(0);
+  const [likes, setLikes] = useState(issue.upvotes);
   //state for modal
   const [visible, setVisible] = useState(false);
   // opens modal
@@ -20,6 +27,10 @@ const Issue = ({ issue }) => {
 
   const updateLikes = type => {
     type === "like" ? setLikes(likes + 1) : setLikes(likes - 1);
+    issue.upvotes = likes
+    console.log(issue);
+    const id = issue.id
+    editIssue(id, type === "like" ? {upvotes: likes + 1} : {upvotes: likes - 1});
   };
 
   // 150 is the current size
@@ -33,7 +44,7 @@ const Issue = ({ issue }) => {
     axiosWithAuth()
       .get(`https://comake-backend.herokuapp.com/api/users/${id}`)
       .then(response => {
-        console.log(response)
+        console.log(response.data)
         // console.log("Response, User Name:", response.data[0]["name"])
         setName(response["data"][0]["name"]);
       })
@@ -42,7 +53,7 @@ const Issue = ({ issue }) => {
 
   return (
     <div>
-      <Badge count={likes}>
+      <Badge count={likes + ' likes'}>
         <Card
           style={{ width: 400, height: "270px", borderRadius: '4px', border: '1px solid black', boxShadow: '10px 10px 19px -5px rgba(0,0,0,0.63)' }}
           actions={[
@@ -65,7 +76,7 @@ const Issue = ({ issue }) => {
                 ? issue.issue_name.slice(0, 13)
                 : issue.issue_name
             }
-            description={<Tags solved={issue.solved} />}
+            description={<div>Status: <Tags solved={issue.solved}/></div>}
           />
           <p
             style={{
@@ -117,4 +128,10 @@ const Issue = ({ issue }) => {
   );
 };
 
-export default Issue;
+const mapStateToProps = state => {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps, {editIssue})(Issue);

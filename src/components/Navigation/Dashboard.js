@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 // Actions
 import { userSignOut } from "../../actions/actions";
 // Ant Design
-import { Layout, Row, Button, PageHeader } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
+import { Layout, Row, Button, PageHeader, Avatar, Tooltip } from "antd";
+import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 // Components
 import SideMenu from "./SideMenu";
 
@@ -19,10 +19,14 @@ const Dashboard = props => {
     props.data("/");
   };
 
+  const pushUser = () => {
+    props.data("/user");
+  };
+
   return (
     <Layout>
-      <SideMenu bye={bye}/>
-      <Layout style={{backgroundColor: '#333'}}>
+      <SideMenu bye={bye} />
+      <Layout style={{ backgroundColor: "#333" }}>
         {/* Page wrapper with nice background */}
         <PageHeader
           style={{
@@ -44,7 +48,10 @@ const Dashboard = props => {
                 Log Out
                 <LogoutOutlined />
               </Row>
-            </Button>
+            </Button>,
+            <Tooltip title="View Profile">
+              <Avatar icon={<UserOutlined onClick={e => pushUser()} />} />
+            </Tooltip>
           ]}
         />
         <Content
@@ -54,12 +61,20 @@ const Dashboard = props => {
             padding: 24,
             backgroundColor: "white",
             minHeight: "80vh",
-            borderRadius: '8px'
+            borderRadius: "8px"
           }}
         >
           {Page}
         </Content>
-        <Footer style={{ textAlign: "center", backgroundColor: '#333', color: 'white' }}>&copy; Co-Make 2020</Footer>
+        <Footer
+          style={{
+            textAlign: "center",
+            backgroundColor: "#333",
+            color: "white"
+          }}
+        >
+          &copy; Co-Make 2020
+        </Footer>
       </Layout>
     </Layout>
   );

@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 // Redux
 import {connect} from 'react-redux'
 
-import { Modal, Form, Input } from "antd";
+import { Modal, Form, Input, Switch } from "antd";
 
 const EditModal = ({ visible, onCancel, onCreate, currentIssue }) => {
   const [form] = Form.useForm();
 
-  console.log("EDIT: ", currentIssue)
+  const [solved, setSolved] = useState(currentIssue.solved)
+  console.log(solved)
+
+
+  const onChange = checked => {
+    console.log(`switch to ${checked}`);
+    setSolved(checked)
+};
 
   return (
     <Modal
@@ -24,7 +31,7 @@ const EditModal = ({ visible, onCancel, onCreate, currentIssue }) => {
               location: values.location !== undefined ? values.location : currentIssue.location,
               zip: values.zip !== undefined ? values.zip : currentIssue.zip,
               description: values.description !== undefined ? values.description : currentIssue.description,
-              solved: values.solved !== undefined ? values.solved : currentIssue.solved
+              solved: solved ? 1 : 0
             }
             form.resetFields();
             onCreate(update);
@@ -95,15 +102,8 @@ const EditModal = ({ visible, onCancel, onCreate, currentIssue }) => {
         <Form.Item
           name="solved"
           label="Solved"
-          rules={[
-            {
-              required: false,
-              whitespace: false,
-              message: "Solved Status"
-            }
-          ]}
         >
-          <Input type="textarea" defaultValue={currentIssue.solved}/>
+          <Switch defaultChecked={currentIssue.solved} onChange={onChange} />
         </Form.Item>
       </Form>
     </Modal>

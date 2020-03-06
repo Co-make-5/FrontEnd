@@ -41,7 +41,8 @@ const Explore = props => {
     return (
         <>
         <Row justify="space-around" align="middle">
-            <Switch defaultChecked={false} onChange={onChange} />
+            <div>Solved: <Switch defaultChecked={false} onChange={onChange} /></div>
+            {/* Solved: <Switch defaultChecked={false} onChange={onChange} /> */}
             <Search
             placeholder="Search..."
             onSearch={handleSearch}
