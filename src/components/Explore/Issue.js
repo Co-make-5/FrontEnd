@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // Ant Design
-import { Card, Badge, Modal, Button } from "antd";
+import { Card, Badge, Modal, Button, message } from "antd";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 // Redux
 import {connect} from 'react-redux';
@@ -14,6 +14,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 const Issue = ({ issue, editIssue }) => {
   // count displays upvotes as badge on card
   const [likes, setLikes] = useState(issue.upvotes);
+  const [liked, setLiked] = useState(false);
   //state for modal
   const [visible, setVisible] = useState(false);
   // opens modal
@@ -25,12 +26,25 @@ const Issue = ({ issue, editIssue }) => {
     setVisible(false);
   };
 
+  const error = () => {
+    message.error(`You've already liked this!`);
+  };
+
+  const success = () => {
+    message.success(`Successfully liked!`)
+  }
+
+  const dislike = () => {
+    message.success(`Successfully disliked!`)
+  }
+
   const updateLikes = type => {
     type === "like" ? setLikes(likes + 1) : setLikes(likes - 1);
     issue.upvotes = likes
-    console.log(issue);
     const id = issue.id
     editIssue(id, type === "like" ? {upvotes: likes + 1} : {upvotes: likes - 1});
+    type === "like" ? success() : dislike()
+    setLiked(true);
   };
 
   // 150 is the current size
@@ -45,7 +59,6 @@ const Issue = ({ issue, editIssue }) => {
       .get(`https://comake-backend.herokuapp.com/api/users/${id}`)
       .then(response => {
         console.log(response.data)
-        // console.log("Response, User Name:", response.data[0]["name"])
         setName(response["data"][0]["name"]);
       })
       .catch(err => console.log("Error getting user info:", err));
@@ -61,12 +74,12 @@ const Issue = ({ issue, editIssue }) => {
             <DislikeOutlined
               style={{ fontSize: "20px", color: "#ff4d4f" }}
               key="minus"
-              onClick={e => updateLikes("dislike")}
+              onClick={e => liked ? error() : updateLikes("dislike")}
             />,
             <LikeOutlined
               style={{ fontSize: "20px", color: "#52c41a" }}
               key="plus"
-              onClick={e => updateLikes("like")}
+              onClick={e => liked ? error() : updateLikes("like")}
             />
           ]}
         >

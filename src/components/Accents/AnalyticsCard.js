@@ -9,7 +9,7 @@ const AnalyticsCard = (props) => {
 
     return (
         <>
-            <Card title={text} style={{margin: '20px', border: '1px solid black', boxShadow: '10px 10px 19px -5px rgba(0,0,0,0.63)'}}>
+            <Card title={text} style={{margin: '20px', borderRadius: '4px', border: '1px solid black', boxShadow: '10px 10px 19px -5px rgba(0,0,0,0.63)'}}>
                 <h1>{total}</h1>
             </Card>
         </>
