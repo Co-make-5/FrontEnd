@@ -26,8 +26,6 @@ const EditModal = ({ visible, onCancel, onCreate, currentIssue }) => {
               description: values.description !== undefined ? values.description : currentIssue.description,
               solved: values.solved !== undefined ? values.solved : currentIssue.solved
             }
-            // console.log(values)
-            // console.log(update)
             form.resetFields();
             onCreate(update);
           })
@@ -93,6 +91,19 @@ const EditModal = ({ visible, onCancel, onCreate, currentIssue }) => {
           ]}
         >
           <Input type="textarea" defaultValue={currentIssue.location}/>
+        </Form.Item>
+        <Form.Item
+          name="solved"
+          label="Solved"
+          rules={[
+            {
+              required: false,
+              whitespace: false,
+              message: "Solved Status"
+            }
+          ]}
+        >
+          <Input type="textarea" defaultValue={currentIssue.solved}/>
         </Form.Item>
       </Form>
     </Modal>

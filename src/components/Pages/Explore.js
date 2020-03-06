@@ -18,6 +18,7 @@ const Explore = props => {
     const [tickets, setTickets] = useState(props.issues)
 
     const [searchTerm, setSearchTerm] = useState("");
+    const [status, setStatus] = useState();
 
     useEffect(() => {
         const searchResults = props.issues.filter(issue => issue.description.toLowerCase().includes(searchTerm));
@@ -25,7 +26,7 @@ const Explore = props => {
     }, [props.issues])
 
     const handleSearch = (value, event) => {
-        const searchResults = props.issues.filter(issue => issue.description.toLowerCase().includes(value.toLowerCase()));
+        const searchResults = props.issues.filter(issue => issue.description.toLowerCase().includes(value.toLowerCase()) || issue.location.toLowerCase().includes(value.toLowerCase()));
         setTickets(searchResults);
         setSearchTerm(value.toLowerCase());
     }
@@ -33,12 +34,14 @@ const Explore = props => {
     // switch onChange placeholder
     const onChange = checked => {
         console.log(`switch to ${checked}`);
+        const results = props.issues.filter(issue => issue.solved == checked)
+        setTickets(results)
     };
 
     return (
         <>
         <Row justify="space-around" align="middle">
-            <Switch defaultChecked onChange={onChange} />
+            <Switch defaultChecked={false} onChange={onChange} />
             <Search
             placeholder="Search..."
             onSearch={handleSearch}
