@@ -20,7 +20,7 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 const App = props => 
 {
 
-  useEffect(() => 
+  useEffect(() =>
   {
     axiosWithAuth().get('https://comake-backend.herokuapp.com/api/users/5')
     .then(res => console.log(res))
@@ -34,7 +34,6 @@ const App = props =>
   const historyPush = location => {
     props.history.push(location);
   }
-
 
   return (
     <div className="App">
