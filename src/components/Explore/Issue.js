@@ -116,10 +116,10 @@ const Issue = ({ issue, editIssue }) => {
             ]}
           >
             <p>
-              <Tags solved={issue.solved} />
+              <p>Status: <Tags solved={issue.solved} /></p>
             </p>
             <p>Location: {issue.zip}</p>
-            <p>{issue.description}</p>
+            <p>Description: {issue.description}</p>
             <p>Submitted by: {name !== null ? name : "Anonymous"}</p>
           </Modal>
         </Card>
