@@ -3,7 +3,7 @@ import { ResponsivePie } from "@nivo/pie";
 
 const PieChart = props => {
 
-  const issues = props.issues;  
+  const issues = props.issues;
 
   const open = issues.filter(issue => issue.solved == 0).length;
   const solved = issues.filter(issue => issue.solved == 1).length;

@@ -52,7 +52,7 @@ const Dashboard = props => {
             margin: "24px 16px 0",
             overflow: "initial",
             padding: 24,
-            backgroundColor: "rgba(255, 255, 255, .7)",
+            backgroundColor: "white",
             minHeight: "80vh",
             borderRadius: '8px'
           }}
