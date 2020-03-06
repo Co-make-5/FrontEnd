@@ -20,17 +20,6 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 const App = props => 
 {
 
-  useEffect(() =>
-  {
-    axiosWithAuth().get('https://comake-backend.herokuapp.com/api/users/5')
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-    // props.userSignIn(testSignupUser)
-    // .then(res => console.log(res))
-    // .catch(err => console.log("ERR:", err))
-    // props.fetchIssues();
-  }, [])
-
   const historyPush = location => {
     props.history.push(location);
   }
