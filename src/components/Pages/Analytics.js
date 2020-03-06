@@ -32,7 +32,7 @@ const Analytics = props => {
           <AnalyticsCard text={"Open"} number={open.length} />
         </Col>
         <Col span={6}>
-          <AnalyticsCard text={"Closed"} number={solved.length} />
+          <AnalyticsCard text={"Solved"} number={solved.length} />
         </Col>
       </Row>
       <Row>

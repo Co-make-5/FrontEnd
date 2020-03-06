@@ -6,12 +6,12 @@ import { fetchIssues, deleteIssue, editIssue, currentIssue } from "../../actions
 // Componenets
 import Tags from "../Accents/Tags";
 // Ant Design
-import { List, Button } from "antd";
+import { List, Button, message } from "antd";
 import InfiniteScroll from "react-infinite-scroller";
 import EditModal from "./EditModal";
 
 const UserIssues = props => {
-  const data = props.issues;
+  let data = props.issues;
 
   const id = window.localStorage.getItem("userID");
 
@@ -21,8 +21,19 @@ const UserIssues = props => {
     return;
   };
 
+  const success = () => {
+    message.success(`Successfully updated!`);
+  };
+
+  const deleteSuccess = () => {
+    message.success(`Successfully deleted!`)
+  }
+
   const deleteTicket = issueID => {
     props.deleteIssue(issueID);
+    props.fetchIssues();
+    data = props.issues
+    deleteSuccess();
   };
 
   const [visible, setVisible] = useState(false);
@@ -34,7 +45,8 @@ const UserIssues = props => {
     props.editIssue(props.issue.id, update)
     setTimeout(() => {
       props.fetchIssues();
-      setVisible(!visible)
+      setVisible(!visible);
+      success();
     }, 500)
   }
 
